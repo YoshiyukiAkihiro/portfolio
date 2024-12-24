@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Akihiro Yoshiyuki's Portfolio</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <h1><span>A</span>kihiro Yoshiyuki's Portfolio</h1>
+        <div class="header-list">
+            <nav>
+                <ul class="clearfix">
+                    <li><a href="#top">Top</a></li>
+                    <li><a href="#introduction">自己紹介</a></li>
+                    <li><a href="#Sample">実装サンプル</a></li>
+                    <div class="hamburger-menu">
+                        <span class="material-icons" id="HamburgerOpen">menu</span>
+                    </div>
+                </ul>
+            </nav>    
+        </div>
+        <div class="clear"></div>
+    </header>
+
+    <!-- ハンバーガーメニュー -->
+    <div class="HamburgerOverlay">
+        <span class="material-icons" id="HamburgerClose">close</span>
+        <nav>
+            <ul>
+                <li><a href="#top" class="link">Top</a></li>
+                <li><a href="#introduction" class="link">自己紹介</a></li>
+                <li><a href="#Sample" class="link">実装サンプル</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- ヘッダー画像 -->
+    <div class="header-img" id="top"></div>
+    <!-- 自己紹介と画像 -->
+    <div class="introduction-wrapper">
+        <div class="container">
+            <h2 id="introduction">
+                自己紹介<br>
+                <span class="small">About me</span>
+            </h2>
+            <p class="text-contents1">私の名前は<span>吉行昭洋</span>です。現在はディーキャリアITエキスパートにて、HTML、CSS、Javascript学習に取り組んでおります。 <br>どうぞよろしくお願いいたします。</p> 
+            <img class="img01" src="images/Akashi_Kaikyo_Bridge.jpg" alt="明石海峡大橋">
+        </div>
+    </div>
+
+    <!-- Webサイト -->
+    <div class="bluebox-wrapper">
+        <div class="container">
+            <div class="contents">
+                <div class="Favorites_WebSites">
+                    <div class="upperhalf">
+                        <h3 class="Favorites2">Webサイト
+                            <br><span>Web Sites</span>
+                        </h3>
+                    </div>
+                    <ul class="lowerhalf2">
+                        <li><a href="https://github.com/YoshiyukiAkihiro" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">Google</a></li>
+                        <li><a href="https://www.yahoo.co.jp/" target="_blank" rel="noopener noreferrer">Yahoo! Japan</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 実装サンプル -->
+    <div class="Sample">
+        <h2 id="Sample">
+            実装サンプル<br>
+            <span class="small">Sample</span>
+        </h2>
+    </div>
+
+    <!-- 画像ギャラリー -->
+    <div class="imagegallery-wrapper">
+        <div class="container">
+            <h3 class="section-title">画像ギャラリー</h3>
+                <div class="imagegallery-items">
+                    <!-- 項目１ -->
+                    <div class="imagegallery-item">
+                        <img class="images" src="images/great_wall_of_china.jpg" alt="万里の長城">
+                        <div class="under-block">
+                            <h4 class="imagegallery-text1">万里の長城</h4>
+                        </div>
+                        <span class="imagegallery-text2">夕焼けに照らされた厳かな城壁です。</span>
+                    </div>
+                    <!-- 項目２ -->
+                    <div class="imagegallery-item">
+                        <img class="images" src="images/Himeji_castle.jpg" alt="姫路城">
+                        <div class="under-block">
+                            <h4 class="imagegallery-text1">姫路城</h4>
+                        </div>
+                        <p class="imagegallery-text2">晴れやかな桜と姫路城です。</p>
+                    </div>
+                    <!-- 項目３ -->
+                    <div class="imagegallery-item">
+                        <img class="images" src="images/toypoodle.jpg" alt="トイプードル">
+                        <div class="under-block">
+                            <h4 class="imagegallery-text1">トイプードル</h4>
+                        </div>
+                        <p class="imagegallery-text2">もふもふのトイプードルです。</p>
+                    </div>
+                    <!-- 項目４ -->
+                    <div class="imagegallery-item">
+                        <img class="images" src="images/Norway_Aurora.jpg" alt="オーロラと犬ぞり">
+                        <div class="under-block">
+                            <h4 class="imagegallery-text1">オーロラと犬ぞり</h4>
+                        </div>
+                        <p class="imagegallery-text2">犬ぞりから眺める幻想的なオーロラです。</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- 訓練課題 -->
+    <div class="training-wrapper">
+        <div class="container">
+            <h3 class="section-title">訓練課題</h3>
+                <div class="training-items">
+                    <!-- 課題　項目１ -->
+                    <div class="training-item">
+                        <div class="under-block">
+                            <h4 class="imagegallery-text1">JavaScript:簡易ピアノアプリ</h4>
+                        </div>
+                        <a href="Javascript/index.html" target="_blank"><img class="images" src="images/piano.png" alt="ピアノアプリ画像"></a>
+                        <!-- 説明 -->
+                        <p class="imagegallery-text2">説明</p>
+                        <ul class="imagegallery-text2">
+                            <li>青背景のエリア：再生されている音階が表示されます</li>
+                            <li>鍵盤をクリックすると１秒間音声が再生されます</li>
+                            <li>自動演奏ボタン：「チューリップ」または「きらきら星」がランダムに再生され、ボタンが「演奏中止に」切り替わります</li>
+                            <li>演奏停止ボタン：演奏が停止します</li>
+                        </ul>
+                        <p class="imagegallery-text2">意識した点</p>
+                        <ul class="imagegallery-text2">
+                            <li>audioオブジェクトを</li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-copyright">
+                <p class="footer-copyright-text">Copyright&nbsp;©&nbsp;2024&nbsp;Akihiro&nbsp;Yoshiyuki</p>
+            </div>
+        </div>
+    </footer>
+    <script src="Javascript/main.js"></script>
+</body>
+
+</html>

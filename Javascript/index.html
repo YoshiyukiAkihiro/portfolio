@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>piano</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="keyBoard">
+        <div id="container">
+            <div id="displayArea">
+                <div id="AutoPlayStatus"></div> <!-- 自動演奏の状態表示エリア -->
+                <div id="scaleDisplay"></div> <!-- 音階の表示エリア -->
+            </div>
+        </div>
+        <input type="button" id="AutoPlay" value="自動演奏"> <!-- 自動演奏ボタン -->
+        <div id="container">
+            <div id="piano">
+                <!-- 各音階ボタン -->
+                <input class="key" type="button" id="DoButton" value="ド">
+                <input class="key" type="button" id="ReButton" value="レ">
+                <input class="key" type="button" id="MiButton" value="ミ">
+                <input class="key" type="button" id="FaButton" value="ファ">
+                <input class="key" type="button" id="SoButton" value="ソ">
+                <input class="key" type="button" id="RaButton" value="ラ">
+                <input class="key" type="button" id="SiButton" value="シ">
+                <input class="key" type="button" id="RestBtn">
+            </div>
+        </div>
+    </div>
+    <script>
+    // 音階の配列
+    const scales = [
+        { name: 'ド', buttonId: 'DoButton', audioFile: 'soundfiles/do.mp3' },
+        { name: 'レ', buttonId: 'ReButton', audioFile: 'soundfiles/re.mp3' },
+        { name: 'ミ', buttonId: 'MiButton', audioFile: 'soundfiles/mi.mp3' },
+        { name: 'ファ', buttonId: 'FaButton', audioFile: 'soundfiles/fa.mp3' },
+        { name: 'ソ', buttonId: 'SoButton', audioFile: 'soundfiles/so.mp3' },
+        { name: 'ラ', buttonId: 'RaButton', audioFile: 'soundfiles/ra.mp3' },
+        { name: 'シ', buttonId: 'SiButton', audioFile: 'soundfiles/si.mp3' }
+    ];
+    const buttons = scales.map(scale => document.getElementById(scale.buttonId));       // scales配列をもとに、HTMLドキュメント内のid(ボタン要素)を取得して、buttons配列に格納
+    const audios = scales.map(scale => new Audio(scale.audioFile));                     // scales配列をもとに、Audioオブジェクトを作成し、audios配列に格納
+    // audiosオブジェクトそれぞれに　「停止」「現在の再生時間を 0 にする」　関数
+    function resetAudio() {
+        audios.forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+    }
+    // 音階表示エリアを空にする関数
+    let clearScaleDisplay = function() {
+        $('#scaleDisplay').text('');
+    }
+    // mp3ファイルの再生時間とディスプレイの音階表示時間を管理。clearTimeout用の変数  　　Nrest関数とplayNote関数で使用
+    let id;
+    // 自動演奏中にtoggleAutoPlay関数でclearTimeoutするための変数。(演奏停止ボタン)　　　autoPlay関数にsetTimeout処理が入っている
+    let autoPlayTimeout;
+    // 1000ミリ秒用の変数(手動演奏で使用)
+    let noteDuration = 1000;
+    // 音階ボタンの 有効、無効、透過 を切り替えるための関数
+    function setScaleButtonsState(enabled) {                                               // 「enabled」は仮引数
+        scales.forEach(scale => {
+            const button = document.getElementById(scale.buttonId);                        // scale. は、現在処理中の音階オブジェクトが持つプロパティを参照する ための表記です。 右記のように scale を取り出し、その中の buttonId プロパティを参照しています　scale = { buttonId: "doButton", audioFile: "do.mp3" }　　つまり、scale.buttonId を使うことで 配列内のデータに応じた id を動的に参照する ことが可能になります。
+            button.disabled = !enabled;                                                    // enabled=trueのときボタン有効化、enabled=falseのときボタン無効化(呼び出し元関数の引数enabledの真偽値を見ている)
+            button.style.opacity = enabled ? 1 : 0.5;                                      // enabledがtrueの時"1"  falseの時"0.5"
+        });
+    }
+    // 音符を再生する関数
+    function playNote(scale, duration) {                                                   // 括弧内「scale」「duration」は仮引数で、外部から渡された「実引数」を一時的に受け取るための変数
+        const audio = audios.find(a => a.src.includes(scale.audioFile));                      // audios配列のsrcプロパティの文字列を探す。scaleオブジェクトの「audioFile」プロパティからチェックし、最初に条件を満たすオブジェクトがaudioに代入される。(audios配列から該当するオーディオファイルを見つけ出す)
+        clearTimeout(id);                                                                  // 以前のタイマーをクリア
+        resetAudio();                                                                         // 現在再生中の全音声をリセット
+        $('#scaleDisplay').text(scale.name);                                               // id:scaleDisplay要素に音階名を表示
+        audio.play().then(() => {                                                             // オーディオファイルが再生されれば、実行される
+            id = setTimeout(function() {                                                   // duration経過後に以下を実行
+                audio.pause();                                                                // 音声の停止
+                audio.currentTime = 0;                                                     // 再生位置のリセット
+                clearScaleDisplay();                                                          // ディスプレイの表示をクリア
+            }, duration);
+        }).catch(error => console.error('Error playing audio:', error));                   // ※デバッグ用：　音声再生エラー時
+    }
+    // 休符用関数
+    function Nrest(duration) {                                                             // "duration"は仮引数
+        clearTimeout(id);                                                                     // 
+        $('#scaleDisplay').text('');                                                       //
+        id = setTimeout(clearScaleDisplay, duration);                                         //
+    }
+    // きらきら星自動演奏用、音階、間隔
+    const sheetMusic1 = [
+        { playLength: 500, scale: 'ド' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ド' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ソ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ソ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ラ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ラ' },
+        { playLength: 500, scale: '' },
+        { playLength: 2000, scale: 'ソ' },
+        { playLength: 500, scale: 'ファ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ファ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 500, scale: '' },
+        { playLength: 2000, scale: 'ド' },
+        { playLength: 500, scale: 'ソ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ソ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ファ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ファ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 500, scale: '' },
+        { playLength: 2000, scale: 'レ' },
+        { playLength: 500, scale: 'ソ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ソ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ファ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ファ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 500, scale: '' },
+        { playLength: 2000, scale: 'レ' },
+        { playLength: 500, scale: 'ド' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ド' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ソ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ソ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ラ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ラ' },
+        { playLength: 500, scale: '' },
+        { playLength: 2000, scale: 'ソ' },
+        { playLength: 500, scale: 'ファ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ファ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 500, scale: '' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 500, scale: '' },
+        { playLength: 2000, scale: 'ド' },
+    ];
+    // チューリップ自動演奏用、音階、間隔
+    const sheetMusic2 = [
+        { playLength: 500, scale: 'ド' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 1000, scale: 'ミ' },
+        { playLength: 500, scale: 'ド' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 1000, scale: 'ミ' },
+        { playLength: 500, scale: 'ソ' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 500, scale: 'ド' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 1000, scale: 'レ' },
+        { playLength: 500, scale: 'ド' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 1000, scale: 'ミ' },
+        { playLength: 500, scale: 'ド' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 1000, scale: 'ミ' },
+        { playLength: 500, scale: 'ソ' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 500, scale: 'ド' },
+        { playLength: 500, scale: 'レ' },
+        { playLength: 500, scale: 'ミ' },
+        { playLength: 1000, scale: 'ド' },
+        { playLength: 250, scale: 'ソ' },
+        { playLength: 250, scale: '' },
+        { playLength: 250, scale: 'ソ' },
+        { playLength: 250, scale: '' },
+        { playLength: 250, scale: 'ミ' },
+        { playLength: 250, scale: '' },
+        { playLength: 250, scale: 'ソ' },
+        { playLength: 250, scale: '' },
+        { playLength: 250, scale: 'ラ' },
+        { playLength: 250, scale: '' },
+        { playLength: 250, scale: 'ラ' },
+        { playLength: 250, scale: '' },
+        { playLength: 1000, scale: 'ソ' },
+        { playLength: 250, scale: 'ミ' },
+        { playLength: 250, scale: '' },
+        { playLength: 250, scale: 'ミ' },
+        { playLength: 250, scale: '' },
+        { playLength: 250, scale: 'レ' },
+        { playLength: 250, scale: '' },
+        { playLength: 250, scale: 'レ' },
+        { playLength: 250, scale: '' },
+        { playLength: 4000, scale: 'ド' }
+    ];
+    // 自動演奏の実行関数
+    function autoPlay(x) {                                                              // 仮変数xには「sheetMusic1」「sheetMusic2」が代入される
+        let i = 0;
+        function playNext() {
+            if (i < x.length) {
+                let { scale, playLength } = x[i];                                       
+                if (scale) {                                                            // "i"の値が配列の長さを超えるとunidentified(false)になり処理がストップ
+                    const scaleData = scales.find(s => s.name === scale);               // 配列scalesからnameプロパティがscaleNameに一致するオブジェクトを探す 
+                    if (scaleData) {
+                        playNote(scaleData, playLength);
+                    }
+                } else {
+                    Nrest(playLength);
+                }
+                i++;
+                autoPlayTimeout = setTimeout(playNext, playLength);                     // グローバル変数でautoPlayTimeoutを定義する事で、別スコープで
+            } else {
+                setScaleButtonsState(true);
+                isAutoPlaying = false;
+                $('#AutoPlay').val('自動演奏');
+                $('#AutoPlayStatus').text('');
+            }
+        }
+        playNext();
+    }
+    // 自動演奏の開始・停止処理をまとめる関数
+    let isAutoPlaying = false;                                                          // ※スイッチ用　　初期状態は"false"　自動演奏ボタンが押されるor自動演奏が終わると状態が切り替わる
+    function toggleAutoPlay() {                                                            // 自動演奏ボタンを押したときの処理
+        if (isAutoPlaying) {                                                            // 自動演奏停止用の処理
+            clearTimeout(autoPlayTimeout);                                                 // setTimeout(playNext, playLength)のタイマーをキャンセル
+            resetAudio();                                                               // audioオブジェクトを停止、現在の再生時間を0に
+            clearScaleDisplay();                                                           // 音階表示エリアを空にする
+            setScaleButtonsState(true);                                                 // 音階ボタンを有効化、opacity 1 に
+            isAutoPlaying = false;
+            $('#AutoPlay').val('自動演奏');
+            $('#AutoPlayStatus').text('');
+        } else {                                                                        // 自動演奏開始用の処理
+            isAutoPlaying = true;
+            setScaleButtonsState(false);                                                // 音階ボタンを無効化、opacity 0.5
+            if (Math.floor(Math.random() * 10) <= 4) {                                  // 0~9までの乱数を生成し、0~4、5~9の値で処理を分ける(1:1の確率)
+                autoPlay(sheetMusic1);
+                $('#AutoPlay').val('演奏停止');
+                $('#AutoPlayStatus').text('自動演奏中です：きらきら星');
+            } else {
+                autoPlay(sheetMusic2);
+                $('#AutoPlay').val('演奏停止');
+                $('#AutoPlayStatus').text('自動演奏中です：チューリップ');
+            }
+        }
+    }
+
+    // 自動演奏の開始・停止ボタンのクリックイベント
+    $('#AutoPlay').click(toggleAutoPlay);
+
+    // 手動演奏のためのボタンイベント
+    buttons.forEach((button, index) => {                                                // 配列buttons内の各ボタン(button)にforEachする、indexは現在のボタンのインデックス番号
+        button.addEventListener('click', () => {
+            const scale = scales[index];                                                // scales
+            playNote(scale, noteDuration);
+        });
+    });
+    // 休符ボタンの処理はそのまま
+    $('#RestBtn').click(() => Nrest(noteDuration));
+
+    // キーと音階のマッピング
+    const keyMappings = {
+        'a': 'ド',
+        's': 'レ',
+        'd': 'ミ',
+        'f': 'ファ',
+        'g': 'ソ',
+        'h': 'ラ',
+        'j': 'シ'
+    };
+    // ボタンをキー入力で発火する処理
+    $(document).keydown(function(event) {                                               // HTMLドキュメント全体でキーボードが押された時の処理
+        const scaleName = keyMappings[event.key];                                       // キー入力(event.key)をもとに、キーに対応する音階名をscaleNameとして取得　　例：aを押すと"ド"
+        if (scaleName) {                                                                // keyMappingsに存在しないキーが押された場合undefined(false)となり処理が行われない
+            const scale = scales.find(s => s.name === scaleName);                       // 配列scalesからnameプロパティがscaleNameに一致するオブジェクトを探す
+            if (scale) {
+                playNote(scale, noteDuration);
+            }
+        }
+    });
+    </script>
+
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #container {
+        width: 90%;
+        margin: 0 auto;
+    }
+    #keyBoard {
+        width: 600px;
+        height: 400px;
+        background-color: rgba(0, 0, 0, 0.568);
+        margin: 120px auto 0;
+    }
+    #displayArea {
+        display: flex;
+        justify-content: center;
+    }
+    #AutoPlayStatus {
+        width: 300px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        margin: 20px 0px;
+        background-color: rgb(45, 53, 167);
+        color: aliceblue;
+    }
+    #scaleDisplay {
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        margin: 20px 0px;
+        background-color: rgb(45, 53, 167);
+        color: aliceblue;
+    }
+    #piano {
+        display: flex;
+        justify-content: center;
+    }
+    .key {
+        height: 200px;
+        width: 60px;
+        box-shadow: 0px 4px 0px #818694;
+    }
+    .key:active {
+        position: relative;
+        top: 4px;
+        box-shadow: none;
+    }
+    #AutoPlay {
+        width: 100px;
+        height: 30px;
+        background-color: rgb(0, 0, 0);
+        color: aliceblue;
+        display: block;
+        margin: 0 auto 20px auto;
+    }
+    #RestBtn {
+        display: none;
+    }
+    </style>
+</body>
+</html>

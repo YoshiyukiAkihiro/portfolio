@@ -1,0 +1,490 @@
+body {
+    font-family: "Noto Sans JP";
+    font-weight: bold;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    letter-spacing: 0.05em;
+}
+
+/* float解除用 */
+.clear {
+    clear: both;
+}
+
+/* liのfloat解除用*/
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+header {
+    height: 80px;
+    width: 100%;
+    background-color: #000000CC;
+    position: fixed;
+    top: 0;
+}
+
+.container {
+    max-width: 1024px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* 文字列(Akihiro Yoshiyuki) */
+h1 {
+    float: left;
+    line-height: 80px;
+    margin-left: 20px;
+    color: #FFF;
+    font-size: 26px;
+}
+
+/* 文字A(Akihiro YoshiyukiのAの色修正用) */
+header span {
+    color: #A6ACFF;
+}
+
+.header-list {
+    float: right;
+}
+
+/* リスト（ヘッダー右側） */
+.header-list li{
+    list-style: none;
+    line-height: 80px;
+    padding: 0px 20px;
+    font-size: 16px;
+    float: left;
+}
+
+/* ハンバーガーメニューの外枠 */
+.hamburger-menu {
+    margin-left: auto;
+}
+
+/* ハンバーガーメニュー */
+.hamburger-menu #HamburgerOpen {
+    display: none;
+}
+
+/* PC用画面ではハンバーガーメニューを消す */
+.hamburger-menu #HamburgerOpen.hide {
+    display: none;
+}
+
+/* ハンバーガーメニュー用オーバーレイ */
+.HamburgerOverlay {
+    position: fixed;
+    width: 300px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    padding: 64px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s;
+}
+
+/* jsでshowクラスを付与してオーバーレイを表示 */
+.HamburgerOverlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ハンバーガーメニュー　バツボタン */
+.HamburgerOverlay #HamburgerClose {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+/* ハンバーガーメニューのリスト枠 */
+.HamburgerOverlay ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ハンバーガーメニューのリスト列 */
+.HamburgerOverlay li {
+    margin-top: 24px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .3s, transform .3s;
+}
+
+/* オーバーレイにshowタグが付与された時、表示されtransformを切る */
+.HamburgerOverlay.show li {
+    opacity: 1;
+    transform: none;
+}
+
+/* オーバーレイにshowタグが付与された時liの子要素 */
+.HamburgerOverlay.show li:nth-child(1) {
+    transition-delay: .1s;
+}
+
+.HamburgerOverlay.show li:nth-child(2) {
+    transition-delay: .2s;
+  }
+  
+.HamburgerOverlay.show li:nth-child(3) {
+    transition-delay: .3s;
+}
+
+/* ヘッダー右側の文字色 */
+.header-list a {
+    color: #FFF;
+}
+
+/* ヘッダー用クジラ画像 */
+.header-img {
+    height: 40vh;
+    margin-bottom: 80px;
+    background-image: url(images/berchtes_garden.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+/* 青文字「自己紹介」「実装サンプル」 */
+h2 {
+    color: #4B52A7;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* 青文字「Self Introduction」「Sample」 */
+.small {
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+/* 文字列（私の名前は~~~） */
+.text-contents1 {
+    margin: auto;
+    max-width: 600px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 32px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+/* 文字列「吉行昭洋」 */
+.text-contents1 span {
+    font-weight: bold;
+}
+
+/* 画像「明石海峡大橋」 */
+.img01 {
+    background-position: center;
+    max-width: 600px;
+    height: 14.4%;
+    margin: auto;
+    display: block;
+}
+
+/* 茶色枠2つを囲む周囲 */
+.contents {
+    margin: 40px auto 0px auto;
+    max-width: 600px;
+}
+
+/* 茶色枠 */
+.Favorites_WebSites {
+    background-color: #644033B3;
+    border-radius: 10px;
+}
+
+/* 茶色枠の白線より上の周囲 */
+.upperhalf {
+    padding: 0px 10px 0px 10px;
+}
+
+/* 茶色枠内の白線より上の「文字列」 */
+.contents h3 {
+    text-align: center;
+    color: #FFF;
+    border-bottom: 1px solid #FFF;
+}
+
+/* 文字列( 好きなもの・趣味  Webサイト ) */
+.Favorites2 {
+    font-size: 16px;
+    padding-top: 20px;
+}
+
+/* 文字列(Favorites  Web Sites) */
+h3 span {
+    font-size: 12px;
+    display: block;
+    margin:3px 0px 10px 0px;
+}
+
+/* 左の青枠、線より下部分の周囲 */
+.lowerhalf {
+    color: #FEFFC7;
+    padding: 20px 10px 20px 10px;
+    line-height: 30px;
+}
+
+/* 左の青枠　リスト */
+.lowerhalf li {
+    list-style-position: inside;
+    margin-left: 20px;
+}
+
+/* グループ(右の青枠、線より下) */
+.lowerhalf2 {
+    line-height: 30px;
+    padding: 20px 10px 20px 10px;
+}
+
+/* 文字列(右の青枠、線より下) */
+.lowerhalf2 a {
+    display: inline-block;
+    height: 30px;
+    color: #FFE8F6;
+}
+
+/* 右の青枠　リスト */
+.lowerhalf2 li {
+    list-style-position: inside;
+    margin-left: 20px;
+    color: #FFE8F6;
+}
+
+/* 青の文字列(実装サンプル) */
+.Sample {
+    margin-top: 80px;
+}
+
+/* 青の文字列(Sample) */
+.Sample .small {
+    margin-top: 6px;
+}
+
+/* 範囲(お問い合わせフォーム下、4項目全体の四方) */
+.inputfield {
+    width: 600px;
+    margin: 0 auto;
+}
+
+/* 緑文字列「画像ギャラリー、お問い合わせフォーム、JavaScript課題」 */
+.imagegallery-wrapper h3,
+.contactform-wrapper h3,
+.training-wrapper h3,
+.javascript-task-wrapper h3 {
+    color: #32839C;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px solid #B7B7B7;
+    margin-bottom: 40px;
+    margin-top: 80px;
+}
+
+.imagegallery-items {                   /* imagegallery-itemの並び替え用 */                      
+    display: flex;
+}
+
+.imagegallery-item {                    /* (画像+青背景テキスト+コメント)の周囲 */
+    width: 25%;
+}
+
+.images {                              /* 画像ギャラリー内の画像、訓練課題の画像 */
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* 青ブロックの周囲 */
+.under-block {
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* 青ブロック内の文字列 */
+.imagegallery-text1 {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 14px;
+    padding-top: 4px;
+    padding-bottom: 6px;
+    background-color: #644033B3;
+}
+
+/* 青ブロック下、コメント欄の文字列 */
+.imagegallery-text2 {
+    width: 90%;
+    display: block;
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    color: #000000;
+    margin: 4px auto 0;
+    list-style-position: inside;
+}
+
+/* 訓練課題の中のアイテムすべてまとめた周囲 */
+.training-items {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.training-item a {
+    display: inline-block;
+    width: 90%;
+    vertical-align: top;
+}
+
+.training-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* ポートフォリオ課題用画像の透過 */
+.training .images:hover {
+    opacity: 0.6;
+}
+
+/* フッター */
+footer {
+    width: 100%;
+    height: 120px;
+    background-color: #644033B3;
+    padding-top: 20px;
+    margin-top: 120px;
+}
+
+/* フッター文字列の範囲 */
+.footer-copyright {
+    width: 100%;
+}
+
+/* フッター文字列 */
+.footer-copyright-text {
+    font-weight: normal;
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+
+
+/* スマホ用レイアウト */
+@media all and (max-width: 768px) {
+    header {
+        height: 48px;
+    }
+
+    .container {
+        width: 90%;
+    }
+    
+    /* 文字列(Taro Shuro~~~) */
+    h1 {
+        line-height: 48px;
+        margin-left: 20px;
+        font-size: 20px;
+    }
+    
+    /* リスト（ヘッダー右側） */
+    .header-list li {
+        display: none;
+    }
+
+    /* ハンバーガーメニュー */
+    .hamburger-menu #HamburgerOpen {
+    display: block;
+    line-height: 48px;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+    /* ヘッダー用クジラ画像 */
+    .header-img {
+        height: 100vh;
+        width: 100%;
+        margin-bottom: 80px;
+        background-image: url(images/berchtes_garden.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    /* 青文字「自己紹介」 */
+    h2 {
+        font-size: 20px;
+    }
+
+    /* 文字列「Self Introduction」「Sample」 */
+    .small {
+        font-size: 12px;
+    }
+
+    /* 文字列（私の名前は~~~） */
+    .text-contents1 {
+        font-size: 14px;
+    }
+
+    /* 画像「木」 */
+    .img01 {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    /* 両青枠 */
+    .Favorites_WebSites {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* imagegallery-itemの並び替え用 */
+    .imagegallery-items {
+        display: block;
+    }
+
+    /* (画像+青背景テキスト+コメント)の周囲 */
+    .imagegallery-item {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        object-fit: contain;
+    }
+
+    /* 画像ギャラリー内の画像４種 */
+    .images,
+    .training-item a {
+        width: 80%;
+    }
+
+    /* グループ(青ブロック内) */
+    .under-block {
+        width: 80%;
+    }
+
+    /* 文字列(青ブロック下、コメント欄) */
+    .imagegallery-text2 {
+        width: 80%;
+    }
+
+    /* 青枠2つを囲む周囲 */
+    .contents {
+        display: block;
+    }
+}
