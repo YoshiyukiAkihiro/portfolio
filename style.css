@@ -59,7 +59,7 @@ header span {
 .header-list li{
     list-style: none;
     line-height: 80px;
-    padding: 0px 20px;
+    padding: 0px 10px;
     font-size: 16px;
     float: left;
 }
@@ -88,8 +88,8 @@ header span {
     bottom: 0;
     background: rgba(255, 255, 255, 0.9);
     text-align: center;
-    padding: 64px;
     opacity: 0;
+    padding-top: 48px;
     pointer-events: none;
     transition: opacity .6s;
 }
@@ -98,6 +98,8 @@ header span {
 .HamburgerOverlay.show {
     opacity: 1;
     pointer-events: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ハンバーガーメニュー　バツボタン */
@@ -118,10 +120,18 @@ header span {
 
 /* ハンバーガーメニューのリスト列 */
 .HamburgerOverlay li {
-    margin-top: 24px;
+    border: solid 2px;
+    line-height: 48px;
     opacity: 0;
     transform: translateY(16px);
     transition: opacity .3s, transform .3s;
+}
+
+/* ハンバーガーメニュー内のリンク */
+.HamburgerOverlay a {
+    color: #000000;
+    font-weight: normal;
+    display: block;
 }
 
 /* オーバーレイにshowタグが付与された時、表示されtransformを切る */
@@ -141,6 +151,14 @@ header span {
   
 .HamburgerOverlay.show li:nth-child(3) {
     transition-delay: .3s;
+}
+
+.HamburgerOverlay.show li:nth-child(4) {
+    transition-delay: .4s;
+}
+
+.HamburgerOverlay.show li:nth-child(5) {
+    transition-delay: .5s;
 }
 
 /* ヘッダー右側の文字色 */
@@ -345,10 +363,19 @@ h3 span {
     text-align: center;
 }
 
+.training-item p {
+    font-size: 14px;
+    font-weight: bold;
+}
+
 .training-item a {
     display: inline-block;
     width: 90%;
     vertical-align: top;
+}
+
+.training-item li:nth-child(odd) {
+    background-color: rgb(236, 217, 192);
 }
 
 .training-item img {
@@ -384,7 +411,32 @@ footer {
     text-align: center;
 }
 
+/* ヘッダーのリストはみ出し防止用 */
+@media all and (max-width: 1000px) {
+    header {
+        height: 48px;
+    }
 
+    /* 文字列(Taro Shuro~~~) */
+    h1 {
+        line-height: 48px;
+        margin-left: 20px;
+        font-size: 20px;
+    }
+
+    /* リスト（ヘッダー右側） */
+    .header-list li {
+        display: none;
+    }
+
+    /* ハンバーガーメニュー */
+    .hamburger-menu #HamburgerOpen {
+    display: block;
+    line-height: 48px;
+    font-size: 32px;
+    cursor: pointer;
+    }
+}
 
 
 /* スマホ用レイアウト */
@@ -415,7 +467,7 @@ footer {
     line-height: 48px;
     font-size: 32px;
     cursor: pointer;
-}
+    }
 
     /* ヘッダー用クジラ画像 */
     .header-img {

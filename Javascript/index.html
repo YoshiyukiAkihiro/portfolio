@@ -39,7 +39,7 @@
         { name: 'ラ', buttonId: 'RaButton', audioFile: 'soundfiles/ra.mp3' },
         { name: 'シ', buttonId: 'SiButton', audioFile: 'soundfiles/si.mp3' }
     ];
-    const buttons = scales.map(scale => document.getElementById(scale.buttonId));       // scales配列をもとに、HTMLドキュメント内のid(ボタン要素)を取得して、buttons配列に格納
+    const buttons = scales.map(scale => document.getElementById(scale.buttonId));       // scales配列をもとに、HTMLドキュメント内のid(ボタン要素)を取得して、buttons配列に格納　　　　無名関数を使わない省略記法
     const audios = scales.map(scale => new Audio(scale.audioFile));                     // scales配列をもとに、Audioオブジェクトを作成し、audios配列に格納
     // audiosオブジェクトそれぞれに　「停止」「現在の再生時間を 0 にする」　関数
     function resetAudio() {
@@ -273,9 +273,9 @@
     $('#AutoPlay').click(toggleAutoPlay);
 
     // 手動演奏のためのボタンイベント
-    buttons.forEach((button, index) => {                                                // 配列buttons内の各ボタン(button)にforEachする、indexは現在のボタンのインデックス番号
-        button.addEventListener('click', () => {
-            const scale = scales[index];                                                // scales
+    buttons.forEach((button, index) => {                                                // 配列buttons内の各ボタン(button)にforEachする、indexは現在のボタンのインデックス番号　　ボタン例："DoButton"
+        button.addEventListener('click', () => {                                           // button
+            const scale = scales[index];                                                // 
             playNote(scale, noteDuration);
         });
     });

@@ -17,6 +17,8 @@
                     <li><a href="#top">Top</a></li>
                     <li><a href="#introduction">自己紹介</a></li>
                     <li><a href="#Sample">実装サンプル</a></li>
+                    <li><a href="#imagegallery">画像ギャラリー</a></li>
+                    <li><a href="#training">訓練課題</a></li>
                     <div class="hamburger-menu">
                         <span class="material-icons" id="HamburgerOpen">menu</span>
                     </div>
@@ -34,6 +36,8 @@
                 <li><a href="#top" class="link">Top</a></li>
                 <li><a href="#introduction" class="link">自己紹介</a></li>
                 <li><a href="#Sample" class="link">実装サンプル</a></li>
+                <li><a href="#imagegallery" class="link">画像ギャラリー</a></li>
+                <li><a href="#training" class="link">訓練課題</a></li>
             </ul>
         </nav>
     </div>
@@ -82,7 +86,7 @@
     <!-- 画像ギャラリー -->
     <div class="imagegallery-wrapper">
         <div class="container">
-            <h3 class="section-title">画像ギャラリー</h3>
+            <h3 id="imagegallery" class="section-title">画像ギャラリー</h3>
                 <div class="imagegallery-items">
                     <!-- 項目１ -->
                     <div class="imagegallery-item">
@@ -122,7 +126,7 @@
     <!-- 訓練課題 -->
     <div class="training-wrapper">
         <div class="container">
-            <h3 class="section-title">訓練課題</h3>
+            <h3 id="training" class="section-title">訓練課題</h3>
                 <div class="training-items">
                     <!-- 課題　項目１ -->
                     <div class="training-item">
@@ -131,16 +135,17 @@
                         </div>
                         <a href="Javascript/index.html" target="_blank"><img class="images" src="images/piano.png" alt="ピアノアプリ画像"></a>
                         <!-- 説明 -->
-                        <p class="imagegallery-text2">説明</p>
+                        <p class="imagegallery-text2">操作説明：</p>
                         <ul class="imagegallery-text2">
                             <li>青背景のエリア：再生されている音階が表示されます</li>
-                            <li>鍵盤をクリックすると１秒間音声が再生されます</li>
-                            <li>自動演奏ボタン：「チューリップ」または「きらきら星」がランダムに再生され、ボタンが「演奏中止に」切り替わります</li>
-                            <li>演奏停止ボタン：演奏が停止します</li>
+                            <li>鍵盤：クリックすると１秒間音声が再生されます</li>
+                            <li>自動演奏ボタン：押すと「チューリップ」または「きらきら星」がランダムに再生され、ボタンが「演奏中止」に切り替わります</li>
+                            <li>演奏停止ボタン：演奏が停止し、初期状態にリセットされます</li>
+                            <li>※ 自動演奏中は鍵盤ボタンが無効化されます</li>
                         </ul>
-                        <p class="imagegallery-text2">意識した点</p>
+                        <p class="imagegallery-text2">意識した改善点：</p>
                         <ul class="imagegallery-text2">
-                            <li>audioオブジェクトを</li>
+                            <li>音階をオブジェクト化し配列で管理することで、音声データ、ボタン、キー入力の一元化しました</li>
                         </ul>
                     </div>
                 </div>
