@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<title>TRY39</title>
+</head>
+<body>
+    <div id="stopwatch">
+        <div id="display">00:00.00</div>
+        <div id="buttons">
+            <input type="button" id="start" value="Start">
+            <input type="button" id="stop" value="Stop">
+            <input type="button" id="reset" value="Reset">
+        </div>
+    <div>
+    <script>
+        // ボタンの初期状態
+        $('#start').disabled = false;
+        $('#stop').disabled = true;
+        $('#reset').disabled = true;
+        $('#stop').css("opacity",0.5);
+        $('#reset').css("opacity",0.5);
+
+        // 更新間隔ごとの更新時間(今回の場合10ミリ秒ごと)
+        let updateTime;
+        // 経過時間
+        let elapsedTime = 0;
+        // 更新間隔
+        let updateInterval;
+        // 開始時間
+        let startTime;
+
+
+
+        // スタートボタンの処理
+        function startTimer() {    
+            startTime = performance.now() - elapsedTime;        // 開始時間を最初にボタンを押した時間に固定
+            updateInterval = setInterval(updateTimer, 10);       // 10ミリ秒毎にupdateTime関数を実行
+            $('#start').disabled = true;
+            $('#stop').disabled = false;
+            $('#reset').disabled = true;
+            $('#start').css("opacity",0.5);
+            $('#stop').css("opacity",1);
+            $('#reset').css("opacity",0.5);
+        }
+
+        // ストップボタンの処理
+        function stopTimer() {
+            elapsedTime = performance.now() - startTime;         // ストップ時に経過時間の累計を記憶
+            clearInterval(updateInterval);
+            $('#start').disabled = false;
+            $('#stop').disabled = true;
+            $('#reset').disabled = false;
+            $('#start').css("opacity",1);
+            $('#stop').css("opacity",0.5);
+            $('#reset').css("opacity",1);
+        }
+        
+        // リセットボタンの処理
+        function resetTimer() {
+            clearInterval(updateInterval);
+            $('#start').disabled = false;
+            $('#stop').disabled = true;
+            $('#reset').disabled = true;
+            $('#start').css("opacity",1);
+            $('#stop').css("opacity",0.5);
+            $('#reset').css("opacity",0.5);
+            elapsedTime = 0;
+            $('#display').text('00:00:00');
+        }
+
+        // タイマー更新中の処理
+        function updateTimer() {
+            updateTime = performance.now();  // 10ミリ秒毎に更新時間を取得
+            elapsedTime = updateTime - startTime // 経過時間の計算
+
+            //分、秒、ミリ秒計算
+            let minutes = Math.floor(elapsedTime / (1000 * 60));            // 60000ミリ秒(1分)単位で割る事で分のみに変換
+            let seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);   // 60000ミリ秒(1分)で割った余りを残す事で「分」以上を除外し、ミリ秒を1000で割る事で秒にする)
+            let milliseconds = Math.floor((elapsedTime % 1000) / 10);       // 1000ミリ秒で(1秒)で割った余りを残す事で「秒」以上を除外し、10で割って1ケタ目をなくす
+
+            // 2ケタ表示用0埋め
+            minutes = String(minutes).padStart(2, '0');
+            seconds = String(seconds).padStart(2, '0');
+            milliseconds = String(milliseconds).padStart(2, '0');
+
+            $('#display').text(`${minutes}:${seconds}.${milliseconds}`);
+        }
+
+        // ボタンクリック時の発火
+        $('#start').click(startTimer);
+        $('#stop').click(stopTimer);
+        $('#reset').click(resetTimer);
+        
+    </script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgba(0, 0, 0, 0.568);
+        }
+
+        #stopwatch {
+            height: 200px;
+            width: 400px;
+            background-color: #00ff00;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 100px auto 0 auto;
+        }
+
+        #display {
+            height: 100px;
+            width: 300px;
+            font-size: 50px;
+            text-align: center;
+            color: white;
+            line-height: 100px;
+            background-color: black;
+            border-radius: 10px;
+            margin: 21px auto 7px auto;
+            border: none;
+        }
+
+        #buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        #start, #stop, #reset {
+            height: 50px;
+            width: 100px;
+            color: white;
+            background-color:black;
+            display: block;
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+</body>
+</html>

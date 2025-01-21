@@ -363,6 +363,11 @@ h3 span {
     text-align: center;
 }
 
+/* 訓練課題　１項目 */
+.training-item {
+    padding-bottom: 40px;
+}
+
 .training-item p {
     font-size: 14px;
     font-weight: bold;
@@ -413,17 +418,6 @@ footer {
 
 /* ヘッダーのリストはみ出し防止用 */
 @media all and (max-width: 1000px) {
-    header {
-        height: 48px;
-    }
-
-    /* 文字列(Taro Shuro~~~) */
-    h1 {
-        line-height: 48px;
-        margin-left: 20px;
-        font-size: 20px;
-    }
-
     /* リスト（ヘッダー右側） */
     .header-list li {
         display: none;
@@ -432,8 +426,8 @@ footer {
     /* ハンバーガーメニュー */
     .hamburger-menu #HamburgerOpen {
     display: block;
-    line-height: 48px;
-    font-size: 32px;
+    line-height: 80px;
+    font-size: 60px;
     cursor: pointer;
     }
 }
