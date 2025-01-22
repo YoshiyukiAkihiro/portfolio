@@ -1,15 +1,110 @@
-body {
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    letter-spacing: 0.05em;
+    color:  #ffffff;
+}
 
+body {
+    font-family:'メイリオ', 'Meiryo', sans-serif;
+    background-color: #36393e;
+}
+
+.title-wrapper {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 1024px;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .title {
+    display: inline-block;
+    border: solid;
+}
 
+.caution-wrapper {
+    margin-bottom: 40px;
 }
 
 .caution {
-    
+    max-width: 600px;
+    border: solid;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.to-mainpage-wrapper {
+    text-align: center;
 }
 
 .to-mainpage {
-    margin:0 auto;
+    display: inline-block;
+    border: solid;
+}
+
+
+/* --------------------------------------- */
+/* communication-mainpage.html用のcss記述欄 */
+/* --------------------------------------- */
+
+/* ランダム質問表示エリアの周囲 */
+.question-wrapper {
+    text-align: center;
+}
+
+/* ランダム質問の表示ボックス */
+.question {
+    width: 80%;
+    display: inline-block;
+    border: solid;
+    margin-bottom: 40px;
+}
+
+/* ------------------質問記入セクションのエリア------------------ */
+
+/* プロフィールセクションの全てまとめた周囲 */
+.sections-wrapper {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* セクションすべての周囲 */
+.sections {
+    max-width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+/* セクション１つ */
+.section {
+    display: block;
+    height: 230px;
+    border: solid;
+    width: 25%;
+}
+
+/* セクション内入力用テキストボックス */
+.answer {
+    max-width:100%;
+    color: black;
+}
+
+/* ------------------管理者用ログインのエリア------------------ */
+
+/* 管理者用ログインボタンの周囲 */
+.administration-page-wrapper {
+    text-align: center;
+}
+
+.administration-page {
+    width: 80%;
+    border: solid;
+    display: inline-block; 
 }
