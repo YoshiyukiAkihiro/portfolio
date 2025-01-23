@@ -55,15 +55,20 @@ body {
 
 /* ランダム質問表示エリアの周囲 */
 .question-wrapper {
-    text-align: center;
+    height: 80px;
+    width: 100%;
+    background-color: #000000CC;
+    position: fixed;
+    top: 0;
 }
 
 /* ランダム質問の表示ボックス */
 .question {
-    width: 80%;
+    line-height: 80px;
+    margin-left: 20px;
+    color: #FFF;
+    font-size: 26px;
     display: inline-block;
-    border: solid;
-    margin-bottom: 40px;
 }
 
 /* ------------------質問記入セクションのエリア------------------ */
@@ -71,12 +76,13 @@ body {
 /* プロフィールセクションの全てまとめた周囲 */
 .sections-wrapper {
     text-align: center;
+    margin-top: 100px;
     margin-bottom: 40px;
 }
 
 /* セクションすべての周囲 */
 .sections {
-    max-width: 90%;
+    max-width: 80%;
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
@@ -87,13 +93,41 @@ body {
     display: block;
     height: 230px;
     border: solid;
-    width: 25%;
+    width: 50%;
 }
 
 /* セクション内入力用テキストボックス */
 .answer {
     max-width:100%;
     color: black;
+}
+
+/* ------------------ランダムTipsの表示エリア------------------ */
+.tips-wrapper {
+    margin-bottom: 40px;
+}
+
+.tips {
+    width: 90%;
+    border: solid;
+    margin: 0 auto;
+}
+
+.ChangeTips {
+    background-color: black;
+    border: solid 1px white;
+    border-radius: 8px;
+    box-shadow: 0 2px 0 white;
+}
+
+.ChangeTips:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.ChangeTips:active {
+    transform: translateY(2px);
+    box-shadow: 0 0 0 white;
 }
 
 /* ------------------管理者用ログインのエリア------------------ */
@@ -107,4 +141,18 @@ body {
     width: 80%;
     border: solid;
     display: inline-block; 
+}
+
+
+
+/* スマホ用レイアウト */
+@media all and (max-width: 768px) {
+    .sections {
+        flex-direction: column;
+        align-items:center;
+    }
+
+    .section {
+        width: 80%;
+    }
 }

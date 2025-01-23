@@ -13,7 +13,7 @@
     const tips = [
         '相手に興味を持ち、相手の話を楽しく聞くように心掛けてみましょう。',
         '相手が話している間は相槌を打ったり、リアクションしてみましょう。',
-        'クローズドクエスチョンで会話を進め、徐々にオープンクエスチョンもしてみるのがおすすめです。',
+        'クローズドクエスチョンで会話を進め、徐々にオープンクエスチョンを混ぜてみるといいでしょう。',
         '質問したい事があっても、一旦最後まで相手の話を聞きましょう。',
         '「でも」「だけど」とすぐに反論するのはやめましょう。',
         'お互いの違いを認め、すぐに否定してしまわないようにしましょう。',
@@ -22,19 +22,25 @@
         'メラビアンの法則によると、コミュニケーションから受け取る情報の55%が「表情、身ぶり手ぶり」38%が「口調、抑揚、語調」7%が「話した内容」になるそうです。',
     ];
 
-  
-    // tips配列からランダムな要素を取得
-    const randomtip = Math.floor(Math.random() * tips.length);
-
-    console.log(randomtip);
-
-
-    function getrandomquestion() {
-        // questions配列からランダムな要素を取得
-        const randomnumber = Math.floor(Math.random() * questions.length);
-        const randomquestion = questions[randomnumber];
-        document.querySelector('randomquestion').textContent(randomquestion);
+    // ランダムな質問を配列から取得し、Webページに描画
+    function RenderRandomQuestion() {
+        const RandomQuestionsNumber = Math.floor(Math.random() * questions.length);
+        const RandomQuestion = questions[RandomQuestionsNumber];
+        document.querySelector('#randomquestion').textContent = RandomQuestion;
     }
 
-    getrandomquestion()
+    // ランダムなtipsを配列から取得し、Webページに描画
+    function RenderRandomTips() {
+        const RandomTipsNumber = Math.floor(Math.random() * tips.length);
+        const RandomTips = tips[RandomTipsNumber];
+        document.querySelector('#randomtips').textContent = RandomTips;
+    }
+
+    RenderRandomQuestion();
+    RenderRandomTips();
+
+    // tipsチェンジボタン
+    let TipsChangeButton = document.querySelector("button");
+    TipsChangeButton.addEventListener("click", RenderRandomTips);
+
 }
