@@ -26,7 +26,7 @@
     function RenderRandomQuestion() {
         const RandomQuestionsNumber = Math.floor(Math.random() * questions.length);
         const RandomQuestion = questions[RandomQuestionsNumber];
-        document.querySelector('#randomquestion').textContent = RandomQuestion;
+        document.querySelector('.randomquestion').textContent = RandomQuestion;
     }
 
     // ランダムなtipsを配列から取得し、Webページに描画
