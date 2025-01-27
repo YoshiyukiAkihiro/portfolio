@@ -12,6 +12,7 @@
         <div class="container">
             <div class="question">
                 <span class="randomquestion"></span>   <!-- ここにランダム質問を表示 -->
+                <button type="button" id="QuestionChangeButton" class="ChangeQuestion">質問チェンジ</button>
             </div>
         </div>
     </div>
@@ -26,13 +27,40 @@
                     <div class="input-box">
                         <div class="input-title"><span class="inputform-text1">必須</span></div>
                         <span class="inputform-text2">名前：</span>
-                        <input>
+                        <div class="empty"></div>
+                        <input class="input">
                     </div>
-                    <!--  -->
+                    <!-- 趣味、特技 -->
+                    <div class="input-box">
+                        <div class="input-title"><span class="inputform-text1">必須</span></div>
+                        <span class="inputform-text2">趣味、特技：</span>
+                        <div class="empty"></div>
+                        <input class="input">
+                    </div>
+                    <!-- 一番ハマっているもの -->
+                    <div class="input-box">
+                        <div class="input-title"><span class="inputform-text1">必須</span></div>
+                        <span class="inputform-text2">一番ハマっているもの：</span>
+                        <div class="empty"></div>
+                        <input class="input">
+                    </div>
+                    <!-- 好きな動画媒体(テレビ、ネット、サブスク等) -->
+                    <div class="input-box">
+                        <div class="input-title"><span class="inputform-text1">必須</span></div>
+                        <span class="inputform-text2">好きな動画(テレビ、ネット、サブスク、映画等)：</span>
+                        <div class="empty"></div>
+                        <input class="input">
+                    </div>
+                    <!-- 質問の答え -->
                     <div class="input-box">
                         <div class="input-title"><span class="inputform-text1">必須</span></div>
                         <span class="inputform-text2">質問の答え：</span>
-                        <input>
+                        <div class="empty"></div>
+                        <input class="input">
+                    </div>
+                    <!-- 送信ボタン -->
+                    <div class="input-box">
+                        <button type="submit" class="send">送信</button>
                     </div>
                 </div>
             </div>

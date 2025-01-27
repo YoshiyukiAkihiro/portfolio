@@ -40,7 +40,10 @@
     RenderRandomTips();
 
     // tipsチェンジボタン
-    let TipsChangeButton = document.querySelector("button");
+    let TipsChangeButton = document.querySelector('#TipsChangeButton');
     TipsChangeButton.addEventListener("click", RenderRandomTips);
 
+    // Questionチェンジボタン
+    let QuestionChangeButton = document.querySelector('#QuestionChangeButton');
+    QuestionChangeButton.addEventListener('click', RenderRandomQuestion);
 }

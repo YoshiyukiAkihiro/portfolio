@@ -49,9 +49,12 @@ body {
 }
 
 
-/* --------------------------------------- */
-/* communication-mainpage.html用のcss記述欄 */
-/* --------------------------------------- */
+/* ------------------------------------------------------------------------------ */
+/* ----------------communication-mainpage.html用のcss記述欄 ---------------------- */
+/* ------------------------------------------------------------------------------ */
+
+
+/* ------------------質問表示エリア------------------ */
 
 /* ランダム質問表示エリアの周囲 */
 .question-wrapper {
@@ -62,17 +65,25 @@ body {
     top: 0;
 }
 
-/* ランダム質問の表示ボックス */
+/* ランダム質問の表示ボックスの周囲 */
 .question {
     height: 80px;
     color: #FFF;
+    display: flex;
+    align-items: center;
 }
 
+/* ランダム質問表示エリア */
 .randomquestion {
-    height: 80px;
-    display: inline-block;
-    margin: auto 0px auto 20px;
+    margin-left: 20px;
     font-size: clamp(1px, 5vw, 24px);
+}
+
+/* 質問チェンジボタン */
+.ChangeQuestion {
+    height: 40px;
+    box-sizing: border-box;
+    margin-left: auto;
 }
 
 /* ------------------入力フォーム------------------ */
@@ -80,44 +91,69 @@ body {
     margin: 100px 0;
 }
 
+/* 入力フォームの枠 */
 .inputform-border {
     display: flex;
     border: solid;
     max-width: 600px;
-    height: 300px;
+    height: 340px;
     margin: 0 auto;
 }
 
+/* 入力ボックスの内側の周囲 */
 .input-inner {
-    
     width: 90%;
     height: 90%;
     margin: auto;
 }
 
+/* 入力フォーム1行分 */
 .input-box {
+    max-height: 52px;
     display: flex;
+    flex-wrap: wrap;
 }
 
+/* 必須ボタンの中 */
 .input-title {
     background-color: red;
     border-radius: 4px;
     text-align: center;
 }
 
+/* 文字列「必須」 */
 .inputform-text1 {
-    font-size: 12px;
+    display: inline-block;
+    height: 23px;
+    width: 44px;
+    font-size: clamp(1px, 3vw, 12px);
     color: #ffffff;
-    padding: 0px 8px;
 }
 
+/* 「必須」の右の文字列 */
 .inputform-text2 {
+    display: inline-block;
+    font-size: clamp(1px, 3vw, 16px);
     margin-left: 10px;
 }
 
+/* 改行用の空要素 */
+.empty {
+    width: 100%;
+}
+
 /* 入力ボックス */
-input {
+.input {
+    height: 24px;
+    width: 240px;
+    color: black;
     margin-left: auto;
+}
+
+/* 送信ボタン */
+.send {
+    color: black;
+    margin: 25px auto 0 auto;
 }
 
 /* ------------------入力した情報の描画セクション------------------ */
@@ -145,6 +181,12 @@ input {
     width: 50%;
 }
 
+/* セクション内部の行 */
+.section p {
+    text-align: left;
+    padding-left: 10px;
+}
+
 /* セクション内入力用テキストボックス */
 .answer {
     max-width:100%;
@@ -162,19 +204,22 @@ input {
     margin: 0 auto;
 }
 
-.ChangeTips {
+.ChangeTips,
+.ChangeQuestion {
     background-color: black;
     border: solid 1px white;
     border-radius: 8px;
     box-shadow: 0 2px 0 white;
 }
 
-.ChangeTips:hover {
+.ChangeTips:hover,
+.ChangeQuestion:hover {
     cursor: pointer;
     opacity: 0.6;
 }
 
-.ChangeTips:active {
+.ChangeTips:active,
+.ChangeQuestion:active {
     transform: translateY(2px);
     box-shadow: 0 0 0 white;
 }
