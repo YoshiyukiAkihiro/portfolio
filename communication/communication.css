@@ -58,37 +58,50 @@ body {
 
 /* ランダム質問表示エリアの周囲 */
 .question-wrapper {
-    height: 80px;
+    height: 120px;
     width: 100%;
     background-color: #000000CC;
     position: fixed;
     top: 0;
 }
 
-/* ランダム質問の表示ボックスの周囲 */
-.question {
-    height: 80px;
-    color: #FFF;
+.tips {
+    height: 120px;
+    color: orange;
     display: flex;
     align-items: center;
 }
 
-/* ランダム質問表示エリア */
-.randomquestion {
+.randomtips {
     margin-left: 20px;
-    font-size: clamp(1px, 5vw, 24px);
+    font-size: 16px;
+    /* font-size: clamp(1px, 5vw, 24px); */
 }
 
+/* ランダム質問の表示ボックスの周囲 */
+/* .question {
+    height: 80px;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+} */
+
+/* ランダム質問表示エリア */
+/* .randomquestion {
+    margin-left: 20px;
+    font-size: clamp(1px, 5vw, 24px);
+} */
+
 /* 質問チェンジボタン */
-.ChangeQuestion {
+/* .ChangeQuestion {
     height: 40px;
     box-sizing: border-box;
     margin-left: auto;
-}
+} */
 
 /* ------------------入力フォーム------------------ */
 .inputform-wrapper {
-    margin: 100px 0;
+    margin: 140px 0;
 }
 
 /* 入力フォームの枠 */
@@ -115,26 +128,31 @@ body {
 }
 
 /* 必須ボタンの中 */
-.input-title {
+/*.input-title {
     background-color: red;
     border-radius: 4px;
     text-align: center;
-}
+}*/
 
 /* 文字列「必須」 */
-.inputform-text1 {
+/*.inputform-text1 {
     display: inline-block;
     height: 23px;
     width: 44px;
     font-size: clamp(1px, 3vw, 12px);
     color: #ffffff;
-}
+}*/
 
 /* 「必須」の右の文字列 */
 .inputform-text2 {
     display: inline-block;
     font-size: clamp(1px, 3vw, 16px);
     margin-left: 10px;
+}
+
+/* ランダム質問 */
+.randomquestion2 {
+    
 }
 
 /* 改行用の空要素 */
@@ -144,6 +162,7 @@ body {
 
 /* 入力ボックス */
 .input {
+    display: block;
     height: 24px;
     width: 240px;
     color: black;
@@ -194,15 +213,15 @@ body {
 }
 
 /* ------------------ランダムTips------------------ */
-.tips-wrapper {
+/* .tips-wrapper {
     margin-bottom: 40px;
-}
+} */
 
-.tips {
+/* .tips {
     width: 90%;
     border: solid;
     margin: 0 auto;
-}
+} */
 
 .ChangeTips,
 .ChangeQuestion {

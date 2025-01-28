@@ -1,7 +1,6 @@
 {
     const questions = [
         '好きな食べ物は何ですか？',
-        '好きな映画は何ですか？',
         '好きな動物はなんですか？',
         '最近面白かった事は何ですか？',
         '行ってみたい場所は？',
@@ -26,14 +25,15 @@
     function RenderRandomQuestion() {
         const RandomQuestionsNumber = Math.floor(Math.random() * questions.length);
         const RandomQuestion = questions[RandomQuestionsNumber];
-        document.querySelector('.randomquestion').textContent = RandomQuestion;
+        // document.querySelector('.randomquestion').textContent = RandomQuestion;
+        document.querySelector('.randomquestion2').textContent = RandomQuestion;
     }
 
     // ランダムなtipsを配列から取得し、Webページに描画
     function RenderRandomTips() {
         const RandomTipsNumber = Math.floor(Math.random() * tips.length);
         const RandomTips = tips[RandomTipsNumber];
-        document.querySelector('#randomtips').textContent = RandomTips;
+        document.querySelector('.randomtips').textContent = RandomTips;
     }
 
     RenderRandomQuestion();
@@ -46,4 +46,29 @@
     // Questionチェンジボタン
     let QuestionChangeButton = document.querySelector('#QuestionChangeButton');
     QuestionChangeButton.addEventListener('click', RenderRandomQuestion);
+
+    // 入力フォームの転写ボタン
+    document.getElementById("TransferButton").addEventListener("click", function() {
+
+        let inputText1 = document.getElementById("InputBox1").value;
+        let inputText2 = document.getElementById("InputBox2").value;
+        let inputText3 = document.getElementById("InputBox3").value;
+        let inputText4 = document.getElementById("InputBox4").value;
+        let inputText5 = document.getElementById("InputBox5").value;
+
+        document.getElementById("OutputText1").textContent = inputText1;
+        document.getElementById("OutputText2").textContent = inputText2;
+        document.getElementById("OutputText3").textContent = inputText3;
+        document.getElementById("OutputText4").textContent = inputText4;
+        document.getElementById("OutputText5").textContent = inputText5;
+
+        document.getElementById("InputBox1").value = '';
+        document.getElementById("InputBox2").value = '';
+        document.getElementById("InputBox3").value = '';
+        document.getElementById("InputBox4").value = '';
+        document.getElementById("InputBox5").value = '';
+
+
+
+    });
 }

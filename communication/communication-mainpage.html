@@ -10,12 +10,17 @@
     <!-- 質問ボックス -->
     <div class="question-wrapper">
         <div class="container">
-            <div class="question">
-                <span class="randomquestion"></span>   <!-- ここにランダム質問を表示 -->
-                <button type="button" id="QuestionChangeButton" class="ChangeQuestion">質問チェンジ</button>
+            <div class="tips">コミュニケーションのヒント:
+                <span class="randomtips"></span>                         <!-- ランダムtipsを <p> に表示 -->
+                <button type="button" id="TipsChangeButton" class="ChangeTips">チェンジ</button>      <!-- tipsをチェンジ -->                      
             </div>
+        <!--<div class="question">
+                <span class="randomquestion"></span>   <!-- ここにランダム質問を表示 -->
+<!--                <button type="button" id="QuestionChangeButton" class="ChangeQuestion">質問チェンジ</button>
+            </div> -->
         </div>
     </div>
+
     <!-- 入力フォーム -->
     <div class="inputform-wrapper">
         <div class="container">
@@ -25,42 +30,43 @@
                 <div class="input-inner">
                     <!-- 名前 -->
                     <div class="input-box">
-                        <div class="input-title"><span class="inputform-text1">必須</span></div>
+                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
                         <span class="inputform-text2">名前：</span>
                         <div class="empty"></div>
-                        <input class="input">
+                        <input class="input" id="InputBox1">
                     </div>
                     <!-- 趣味、特技 -->
                     <div class="input-box">
-                        <div class="input-title"><span class="inputform-text1">必須</span></div>
+                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
                         <span class="inputform-text2">趣味、特技：</span>
                         <div class="empty"></div>
-                        <input class="input">
+                        <input class="input" id="InputBox2">
                     </div>
                     <!-- 一番ハマっているもの -->
                     <div class="input-box">
-                        <div class="input-title"><span class="inputform-text1">必須</span></div>
+                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
                         <span class="inputform-text2">一番ハマっているもの：</span>
                         <div class="empty"></div>
-                        <input class="input">
+                        <input class="input" id="InputBox3">
                     </div>
                     <!-- 好きな動画媒体(テレビ、ネット、サブスク等) -->
                     <div class="input-box">
-                        <div class="input-title"><span class="inputform-text1">必須</span></div>
+                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
                         <span class="inputform-text2">好きな動画(テレビ、ネット、サブスク、映画等)：</span>
                         <div class="empty"></div>
-                        <input class="input">
+                        <input class="input" id="InputBox4">
                     </div>
                     <!-- 質問の答え -->
                     <div class="input-box">
-                        <div class="input-title"><span class="inputform-text1">必須</span></div>
-                        <span class="inputform-text2">質問の答え：</span>
+                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
+                        <span class="inputform-text2">質問：</span><div class="randomquestion2 inputform-text2"></div>
                         <div class="empty"></div>
-                        <input class="input">
+                        <button type="button" id="QuestionChangeButton" class="ChangeQuestion">質問チェンジ</button>
+                        <input class="input" id="InputBox5">
                     </div>
                     <!-- 送信ボタン -->
                     <div class="input-box">
-                        <button type="submit" class="send">送信</button>
+                        <button class="send" id="TransferButton">送信</button>
                     </div>
                 </div>
             </div>
@@ -74,7 +80,7 @@
             <div class="sections">
                 <!-- セクション一つ -->
                 <div class="section">
-                    <p>名前：</p>
+                    <p>名前：</p><span class="OutputText1" id="OutputText1"></span>
                     <p>質問の答え：</p>
                 </div>
                 <div class="section">
@@ -124,15 +130,17 @@
             </div>
         </div>
     </div>
+
     <!-- ランダムtips表示エリア -->
-     <div class="tips-wrapper">
+     <!-- <div class="tips-wrapper">
         <div class="container">
             <div class="tips">コミュニケーションのヒント:
                 <button type="button" id="TipsChangeButton" class="ChangeTips">チェンジ</button>      <!-- tipsをチェンジ -->
-                <p id="randomtips"></p>                        <!-- ランダムtipsを <p> に表示 -->
-            </div>
+                <!-- <p id="randomtips"></p>                        <!-- ランダムtipsを <p> に表示 -->
+            <!-- </div>
         </div>
-     </div>
+     </div> -->
+
     <!-- 管理用ページ -->
     <div class="administration-page-wrapper">
         <div class="container">
