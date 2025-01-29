@@ -47,8 +47,8 @@
     let QuestionChangeButton = document.querySelector('#QuestionChangeButton');
     QuestionChangeButton.addEventListener('click', RenderRandomQuestion);
 
-    // 入力フォームの転写ボタン
-    document.getElementById("TransferButton").addEventListener("click", function() {
+    // 送信ボタン(入力フォームの転写)
+    document.getElementById("TransferButton").addEventListener("click", () => {
 
         let inputText1 = document.getElementById("InputBox1").value;
         let inputText2 = document.getElementById("InputBox2").value;
@@ -68,6 +68,8 @@
         document.getElementById("InputBox4").value = '';
         document.getElementById("InputBox5").value = '';
 
+        let CurrentQuestion = document.getElementById("randomquestion2").textContent;
+        document.getElementById("CurrentQuestion").textContent = CurrentQuestion;
 
 
     });

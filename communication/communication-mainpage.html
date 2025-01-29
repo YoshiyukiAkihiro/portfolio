@@ -62,7 +62,7 @@
                     <!-- 質問の答え -->
                     <div class="input-box">
                         <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
-                        <span class="inputform-text2">質問：</span><div class="randomquestion2 inputform-text2"></div>
+                        <span class="inputform-text2 randomquestion2" id="randomquestion2"></span>
                         <div class="empty"></div>
                         <button type="button" id="QuestionChangeButton" class="ChangeQuestion">質問チェンジ</button>
                         <input class="input" id="InputBox5">
@@ -83,11 +83,16 @@
             <div class="sections">
                 <!-- セクション一つ -->
                 <div class="section">
-                    <p>名前：</p><span class="OutputText1" id="OutputText1"></span>
-                    <p>質問の答え：</p><span class="OutputText2" id="OutputText2"></span>
-                    <p>一番ハマっているもの：</p><span class="OutputText3" id="OutputText3"></span>
-                    <p>好きな動画(テレビ、ネット、サブスク、映画等)：</p><span class="OutputText4" id="OutputText4"></span>
+                    <p>名前：</p>
+                    <p><span class="OutputText1" id="OutputText1"></span></p><div class="empty"></div>
+                    <p>趣味、特技：</p>
+                    <p><span class="OutputText2" id="OutputText2"></span></p><div class="empty"></div>
+                    <p>一番ハマっているもの：</p>
+                    <p><span class="OutputText3" id="OutputText3"></span></p><div class="empty"></div>
+                    <p>好きな動画(テレビ、ネット、サブスク、映画等)：</p>
+                    <p><span class="OutputText4" id="OutputText4"></span></p><div class="empty"></div>
                     <p>質問：<span class="CurrentQuestion" id="CurrentQuestion"></span></p>
+                    <p>質問の答え：<span class="OutputText5" id="OutputText5"></span></p>
                 </div>
                 <div class="section">
                     <p>名前：</p>
@@ -151,7 +156,7 @@
     <div class="administration-page-wrapper">
         <div class="container">
             <div class="administration-page">
-                <a href="###" class="admin">管理用ページリンク(工事中)</a>
+                <a href="###" class="admin">管理用ページリンク(未実装)</a>
             </div>
         </div>
     </div>

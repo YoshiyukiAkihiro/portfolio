@@ -5,6 +5,7 @@
     box-sizing: border-box;
     letter-spacing: 0.05em;
     color:  #ffffff;
+    font-weight: bold;
 }
 
 body {
@@ -67,7 +68,7 @@ body {
 
 .tips {
     height: 120px;
-    color: orange;
+    color: #719DDC;
     display: flex;
     align-items: center;
 }
@@ -75,6 +76,7 @@ body {
 .randomtips {
     margin-left: 20px;
     font-size: 16px;
+    color: orange;
     /* font-size: clamp(1px, 5vw, 24px); */
 }
 
@@ -107,7 +109,7 @@ body {
 /* 入力フォームの枠 */
 .inputform-border {
     display: flex;
-    border: solid;
+    border: 1px solid #777777;
     max-width: 600px;
     height: 340px;
     margin: 0 auto;
@@ -125,6 +127,7 @@ body {
     max-height: 52px;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 5px;
 }
 
 /* 必須ボタンの中 */
@@ -147,6 +150,7 @@ body {
 .inputform-text2 {
     display: inline-block;
     font-size: clamp(1px, 3vw, 16px);
+    color: #719DDC;
     margin-left: 10px;
 }
 
@@ -171,7 +175,8 @@ body {
 
 /* 送信ボタン */
 .send {
-    color: black;
+    color: white;
+    background-color: #898989;
     margin: 25px auto 0 auto;
 }
 
@@ -186,7 +191,6 @@ body {
 
 /* セクションすべての周囲 */
 .sections {
-    max-width: 80%;
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
@@ -194,9 +198,8 @@ body {
 
 /* セクション１つ */
 .section {
-    display: block;
-    height: 230px;
-    border: solid;
+    height: 340px;
+    border: 1px solid #555555;
     width: 50%;
 }
 
@@ -225,7 +228,7 @@ body {
 
 .ChangeTips,
 .ChangeQuestion {
-    background-color: black;
+    background-color: #898989;
     border: solid 1px white;
     border-radius: 8px;
     box-shadow: 0 2px 0 white;
@@ -252,7 +255,7 @@ body {
 
 .administration-page {
     width: 80%;
-    border: solid;
+    border: 1px solid;
     display: inline-block; 
 }
 
