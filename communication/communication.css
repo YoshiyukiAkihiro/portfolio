@@ -8,6 +8,10 @@
     font-weight: bold;
 }
 
+/* ------------------------------------------------------------------------------ */
+/* ----------------communication-toppage.html用のcss記述欄  ---------------------- */
+/* ------------------------------------------------------------------------------ */
+
 body {
     font-family:'メイリオ', 'Meiryo', sans-serif;
     background-color: #36393e;
@@ -54,30 +58,27 @@ body {
 /* ----------------communication-mainpage.html用のcss記述欄 ---------------------- */
 /* ------------------------------------------------------------------------------ */
 
+/* ------------------------------------------------- */
+/* ---------------------ヘッダー--------------------- */
 
-/* ------------------質問表示エリア------------------ */
-
-/* ランダム質問表示エリアの周囲 */
-.question-wrapper {
-    height: 120px;
+/* ヘッダー */
+header {
+    height: 80px;
     width: 100%;
     background-color: #000000CC;
+    color: #719DDC;
+    display: flex;
+    align-items: center;
     position: fixed;
     top: 0;
 }
 
-.tips {
-    height: 120px;
-    color: #719DDC;
-    display: flex;
-    align-items: center;
+.self-introduction {
+    margin-left: 10px;
 }
 
-.randomtips {
-    margin-left: 20px;
-    font-size: 16px;
-    color: orange;
-    /* font-size: clamp(1px, 5vw, 24px); */
+.menu {
+    margin-left: auto;
 }
 
 /* ランダム質問の表示ボックスの周囲 */
@@ -101,6 +102,122 @@ body {
     margin-left: auto;
 } */
 
+/* ---------------------------------------------------- */
+/* ------------------モーダルウィンドウ------------------ */
+.modal-overlay {
+    align-items: center;
+    background: rgba(0,0,0,.6);
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .modal-container {
+    background-color: #36393e;
+    max-height: 80vh;
+    max-width: 500px;
+    overflow-y: auto;
+    /* padding: 30px; */
+    width: 90%;
+  }
+  
+  .modal-close {
+    background: transparent;
+    border: 0;
+  }
+  
+  .modal-header .modal-close::before {
+    content: "\2715";
+  }
+  
+  .modal-content {
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .modal-open {
+    display: block;
+    margin: 140px auto 0 auto;
+    background-color: #898989;
+    border: solid 1px white;
+    border-radius: 8px;
+    box-shadow: 0 2px 0 white;
+  }
+
+  /* モーダルアニメーション */
+@keyframes mmfadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes mmfadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes mmslideIn {
+    from {
+      transform: translateY(15%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes mmslideOut {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-10%);
+    }
+  }
+  
+  .micromodal-slide {
+    display: none;
+  }
+  
+  .micromodal-slide.is-open {
+    display: block;
+  }
+  
+  .micromodal-slide[aria-hidden="false"] .modal-overlay {
+    animation: mmfadeIn .3s cubic-bezier(.0, .0, .2, 1);
+  }
+  
+  .micromodal-slide[aria-hidden="false"] .modal-container {
+    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+  }
+  
+  .micromodal-slide[aria-hidden="true"] .modal-overlay {
+    animation: mmfadeOut .3s cubic-bezier(.0, .0, .2, 1);
+  }
+  
+  .micromodal-slide[aria-hidden="true"] .modal-container {
+    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+  }
+  
+  .micromodal-slide .modal-container,
+  .micromodal-slide .modal-overlay {
+    will-change: transform;
+  }
+
+
+/* ----------------------------------------------- */
 /* ------------------入力フォーム------------------ */
 .inputform-wrapper {
     margin: 140px 0;
@@ -109,9 +226,9 @@ body {
 /* 入力フォームの枠 */
 .inputform-border {
     display: flex;
-    border: 1px solid #777777;
+    /* border: 1px solid #777777;
     max-width: 600px;
-    height: 340px;
+    height: 340px; */
     margin: 0 auto;
 }
 
@@ -127,7 +244,7 @@ body {
     max-height: 52px;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 
 /* 必須ボタンの中 */
@@ -180,6 +297,7 @@ body {
     margin: 25px auto 0 auto;
 }
 
+/* ------------------------------------------------------------- */
 /* ------------------入力した情報の描画セクション------------------ */
 
 /* プロフィールセクションの全てまとめた周囲 */
@@ -215,16 +333,25 @@ body {
     color: black;
 }
 
+/* ----------------------------------------------- */
 /* ------------------ランダムTips------------------ */
 /* .tips-wrapper {
     margin-bottom: 40px;
 } */
 
-/* .tips {
+.tips {
+    height: 120px;
     width: 90%;
-    border: solid;
+    border: 1px solid #555555;
     margin: 0 auto;
-} */
+}
+
+.randomtips {
+    margin-left: 20px;
+    font-size: 16px;
+    color: orange;
+    /* font-size: clamp(1px, 5vw, 24px); */
+}
 
 .ChangeTips,
 .ChangeQuestion {
@@ -246,22 +373,33 @@ body {
     box-shadow: 0 0 0 white;
 }
 
-/* ------------------管理者用ログインのエリア------------------ */
-
-/* 管理者用ログインボタンの周囲 */
-.administration-page-wrapper {
-    text-align: center;
+/* ------------------------------------------- */
+/* ------------------フッター------------------ */
+footer {
+    width: 100%;
+    height: 40px;
+    background-color: #000000CC;
 }
 
-.administration-page {
-    width: 80%;
-    border: 1px solid;
-    display: inline-block; 
+/* フッター文字列の範囲 */
+.footer-copyright {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* フッター文字列 */
+.footer-copyright-text {
+    font-weight: normal;
+    color: #FFFFFF;
+    font-size: 12px;
 }
 
 
 
-/* スマホ用レイアウト */
+/* ---------------------------------------------------- */
+/* ------------------スマホ用レイアウト------------------ */
 @media all and (max-width: 768px) {
     .sections {
         flex-direction: column;

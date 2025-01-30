@@ -1,4 +1,10 @@
 {
+    MicroModal.init({
+        disableScroll: true,
+        awaitOpenAnimation: true,
+        awaitCloseAnimation: true
+      });
+
     const questions = [
         '好きな食べ物は何ですか？',
         '好きな動物はなんですか？',
@@ -26,14 +32,14 @@
         const RandomQuestionsNumber = Math.floor(Math.random() * questions.length);
         const RandomQuestion = questions[RandomQuestionsNumber];
         // document.querySelector('.randomquestion').textContent = RandomQuestion;
-        document.querySelector('.randomquestion2').textContent = RandomQuestion;
+        document.getElementById("randomquestion2").textContent = RandomQuestion;
     }
 
     // ランダムなtipsを配列から取得し、Webページに描画
     function RenderRandomTips() {
         const RandomTipsNumber = Math.floor(Math.random() * tips.length);
         const RandomTips = tips[RandomTipsNumber];
-        document.querySelector('.randomtips').textContent = RandomTips;
+        document.getElementById("randomtips").textContent = RandomTips;
     }
 
     RenderRandomQuestion();

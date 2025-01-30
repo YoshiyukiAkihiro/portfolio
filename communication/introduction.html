@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>メインページ</title>
+    <title>自己紹介登録</title>
     <link rel="stylesheet" href="C:/Users/User175dc/Desktop/portfolio/communication/communication.css">
     <script defer src="C:/Users/User175dc/Desktop/portfolio/communication/communication.js"></script>
     <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
@@ -11,22 +11,17 @@
     <script defer src="C:/Users/urumo/Desktop/portfolio/portfolio/communication/communication.js"></script>
 </head>
 <body>
-    <!-- 質問ボックス -->
-    <header>
-        <span class="self-introduction">自己紹介ページ(仮)</span>
-        <div class="menu">
-            <span></span>
-            <a href="###" class="admin">管理(仮)</a>
-        </div>
-    </header>
 
     <!-- マイクロモーダル -->
     <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
         <!-- 背景のオーバーレイ -->
         <div class="modal-overlay" tabindex="-1" data-micromodal-close>
             <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <header class="modal-header">
+                    <h2 class="modal-title" id="modal-1-title">Micromodal</h2>
                     <!-- 閉じるボタン -->
                     <button class="modal-close" aria-label="Close modal" data-micromodal-close></button>
+                </header>
                 <!-- モーダルのコンテンツ -->
                 <div class="modal-content" id="modal-1-content">
 
@@ -87,89 +82,7 @@
         </div>
     </div>
     <!-- 開くボタン -->
-    <button data-micromodal-trigger="modal-1" class="modal-open">プロフィール登録</button>
+    <button data-micromodal-trigger="modal-1" class="modal-open">open</button>
 
-    <!-- 回答用セクションの集まり -->
-    <div class="sections-wrapper">
-        <div class="container">
-            <!-- セクションのかたまり -->
-            <div class="sections">
-                <!-- セクション一つ -->
-                <div class="section">
-                    <p>名前：</p>
-                    <p><span class="OutputText1" id="OutputText1"></span></p><div class="empty"></div>
-                    <p>趣味、特技：</p>
-                    <p><span class="OutputText2" id="OutputText2"></span></p><div class="empty"></div>
-                    <p>一番ハマっているもの：</p>
-                    <p><span class="OutputText3" id="OutputText3"></span></p><div class="empty"></div>
-                    <p>好きな動画(テレビ、ネット、サブスク、映画等)：</p>
-                    <p><span class="OutputText4" id="OutputText4"></span></p><div class="empty"></div>
-                    <p>質問：<span class="CurrentQuestion" id="CurrentQuestion"></span></p>
-                    <p>質問の答え：<span class="OutputText5" id="OutputText5"></span></p>
-                </div>
-                <!-- <div class="section">
-                    <p>名前：</p>
-                    <p>質問の答え：</p>
-                </div>
-                <div class="section">
-                    <p>名前：</p>
-                    <p>質問の答え：</p>
-                </div>
-                <div class="section">
-                    <p>名前：</p>
-                    <p>質問の答え：</p>
-                </div>
-                <div class="section">
-                    <p>名前：</p>
-                    <p>質問の答え：</p>
-                </div>
-                <div class="section">
-                    <p>名前：</p>
-                    <p>質問の答え：</p>
-                </div>
-                <div class="section">
-                    <p>名前：</p>
-                    <p>質問の答え：</p>
-                </div>
-                <div class="section">
-                    <p>名前：</p>
-                    <p>質問の答え：</p>
-                </div>
-                <div class="section">
-                    <p>名前：</p>
-                    <p>質問の答え：</p>
-                </div>
-                <div class="section">
-                    <p>名前：</p>
-                    <p>質問の答え：</p>
-                </div>
-                <div class="section">
-                    <p>名前：</p>
-                    <p>質問の答え：</p>
-                </div>
-                <div class="section">
-                    <p>名前：</p>
-                    <p>質問の答え：</p>
-                </div> -->
-            </div>
-        </div>
-    </div>
-
-    <!-- ランダムtips表示エリア -->
-    <div class="tips-wrapper">
-        <div class="container">
-            <div class="tips">コミュニケーションのヒント:
-                
-                <p id="randomtips" class="randomtips"></p>                        <!-- ランダムtipsを <p> に表示 -->
-                <button type="button" id="TipsChangeButton" class="ChangeTips">チェンジ</button>      <!-- tipsをチェンジ -->
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-copyright">
-            <span class="footer-copyright-text">Copyright&nbsp;©&nbsp;2025</span>
-        </div>
-    </footer>
 </body>
 </html>
