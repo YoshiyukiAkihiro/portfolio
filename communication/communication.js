@@ -51,10 +51,6 @@
     }
 
 
-    RenderRandomQuestion();
-    RenderRandomTips();
-
-
     // tipsチェンジボタン
     TipsChangeButton.addEventListener("click", RenderRandomTips);
 
@@ -122,5 +118,7 @@
 
     TransferButton.addEventListener('click', Transfer);
 
+    RenderRandomQuestion();
+    RenderRandomTips();
 
 }
