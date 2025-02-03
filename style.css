@@ -38,12 +38,12 @@ header {
 }
 
 /* 文字列(Akihiro Yoshiyuki) */
-h1 {
+.pageTop {
     float: left;
     line-height: 80px;
     margin-left: 20px;
     color: #FFF;
-    font-size: 26px;
+    font-size: 24px;
 }
 
 /* 文字A(Akihiro YoshiyukiのAの色修正用) */
@@ -444,7 +444,7 @@ footer {
     }
     
     /* 文字列(Taro Shuro~~~) */
-    h1 {
+    .pageTop {
         line-height: 48px;
         margin-left: 20px;
         font-size: 20px;
