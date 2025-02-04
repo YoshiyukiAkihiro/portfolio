@@ -23,10 +23,13 @@
     <!-- ランダムtips表示エリア -->
     <div class="tips-wrapper">
         <div class="container">
-            <div class="tips">コミュニケーションのヒント:
-                
+            <div class="tips">
+                <div class="ChangeTips">
+                    <a href="#" id="TipsChangeButton">次へ</a>
+                </div>
+                <p>コミュニケーションのヒント:</p>
                 <p id="randomtips" class="randomtips"></p>                        <!-- ランダムtipsを <p> に表示 -->
-                <button type="button" class="ChangeTips" id="TipsChangeButton">次へ</button>      <!-- tipsをチェンジ -->
+                <!-- <button type="button" class="ChangeTips" id="TipsChangeButton">次へ</button>      tipsをチェンジ -->
             </div>
         </div>
     </div>
@@ -101,7 +104,10 @@
         </div>
     </div>
     <!-- モーダルウィンドウ開くボタン -->
-    <button data-micromodal-trigger="modal-1" class="modal-open">プロフィール登録</button>
+    <div class="modal-open-wrapper">
+        <a href="#" data-micromodal-trigger="modal-1" class="modal-open">プロフィール登録</a>
+    </div>
+    <!-- <button data-micromodal-trigger="modal-1" class="modal-open">プロフィール登録</button> -->
 
 
     <!-- 回答用セクションの集まり -->

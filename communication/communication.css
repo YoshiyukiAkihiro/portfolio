@@ -13,7 +13,8 @@
 /* ------------------------------------------------------------------------------ */
 
 body {
-    font-family:'メイリオ', 'Meiryo', sans-serif;
+    /* font-family:'メイリオ', 'Meiryo', sans-serif; */
+    font-family: Arial, Helvetica, sans-serif;
     /* background-color: #36393e; */
 }
 
@@ -57,17 +58,44 @@ body {
 /* ------------------ポートフォリオ一覧------------------ */
 
 .portfolio-section {
-  background-color: #F7F7F7;
+  background-color: #f7f7f7a3;
+  padding: 120px 0;
 }
 
-.portfolio.list {
+.portfolio-header h1 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.portfolio-discription p {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.portfolio-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: -20px;
 }
 
 .portfolio-item {
+  /* width: 33%; */
+  margin: 0 10px;
   margin-bottom: 20px;
+}
+
+.portfolio-image-wrapper {
+  /* display: inline-block; */
+  /* width: 80%; */
+}
+
+.portfolio-image {
+  /* margin: 0;
+  padding: 0; */
+  display: block;
+  margin: 0 auto;
 }
 
 .portfolio-body {
@@ -104,10 +132,15 @@ body {
 
 .self-introduction {
     margin-left: 10px;
+    color: #FFFFFF;
 }
 
 .menu {
     margin-left: auto;
+}
+
+.menu a {
+  color: #FFFFFF;
 }
 
 /* ランダム質問の表示ボックスの周囲 */
@@ -148,21 +181,23 @@ body {
 .randomtips {
   margin-left: 20px;
   font-size: 16px;
-  color: orange;
+  font-weight: normal;
+  /* color: orange; */
   /* font-size: clamp(1px, 5vw, 24px); */
 }
 
-.ChangeTips {
+/* .ChangeTips {
   display: block;
-  margin: auto auto 0 auto;
-}
+  margin: 0 auto;
+} */
 
-.ChangeTips,
+/* .ChangeTips,
 .ChangeQuestion {
+  font-weight: normal;
   background-color: #898989;
-  border: solid 1px white;
+  border: solid 1px;
   border-radius: 8px;
-  box-shadow: 0 2px 0 white;
+  box-shadow: 0 2px 0;
 }
 
 .ChangeTips:hover,
@@ -175,6 +210,45 @@ body {
 .ChangeQuestion:active {
   transform: translateY(2px);
   box-shadow: 0 0 0 white;
+} */
+
+.ChangeTips a,
+.modal-open-wrapper a {
+  background: #eee;
+  border-radius: 3px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 280px;
+  padding: 10px 25px;
+  color: #313131;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+}
+.ChangeTips a:hover,
+.modal-open-wrapper a:hover {
+  background: #313131;
+  color: #FFF;
+}
+.ChangeTips a:after,
+.modal-open-wrapper a:after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #313131;
+  border-right: 3px solid #313131;
+  transform: rotate(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border-radius: 1px;
+  transition: 0.3s ease-in-out;
+}
+.ChangeTips a:hover:after,
+.modal-open-wrapper a:hover:after {
+  border-color: #FFF;
 }
 
 
@@ -231,14 +305,14 @@ body {
     margin-top: 2rem;
   }
   
-  .modal-open {
+  /* .modal-open {
     display: block;
     margin: 140px auto 0 auto;
     background-color: #898989;
     border: solid 1px white;
     border-radius: 8px;
     box-shadow: 0 2px 0 white;
-  }
+  } */
 
   /* モーダルアニメーション */
 @keyframes mmfadeIn {
@@ -336,22 +410,6 @@ body {
     flex-wrap: wrap;
     margin-bottom: 20px;
 }
-
-/* 必須ボタンの中 */
-/*.input-title {
-    background-color: red;
-    border-radius: 4px;
-    text-align: center;
-}*/
-
-/* 文字列「必須」 */
-/*.inputform-text1 {
-    display: inline-block;
-    height: 23px;
-    width: 44px;
-    font-size: clamp(1px, 3vw, 12px);
-    color: #ffffff;
-}*/
 
 /* 「必須」の右の文字列 */
 .inputform-text2 {
