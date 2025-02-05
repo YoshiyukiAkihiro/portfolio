@@ -143,26 +143,12 @@ body {
   color: #FFFFFF;
 }
 
-/* ランダム質問の表示ボックスの周囲 */
-/* .question {
-    height: 80px;
-    color: #FFF;
-    display: flex;
-    align-items: center;
-} */
-
-/* ランダム質問表示エリア */
-/* .randomquestion {
-    margin-left: 20px;
-    font-size: clamp(1px, 5vw, 24px);
-} */
-
-/* 質問チェンジボタン */
-/* .ChangeQuestion {
-    height: 40px;
-    box-sizing: border-box;
-    margin-left: auto;
-} */
+/* 見出し */
+.profile-title {
+  margin-top: 120px;
+  border-bottom: #313131;
+  text-align: center;
+}
 
 
 /* ----------------------------------------------- */
@@ -186,32 +172,6 @@ body {
   /* font-size: clamp(1px, 5vw, 24px); */
 }
 
-/* .ChangeTips {
-  display: block;
-  margin: 0 auto;
-} */
-
-/* .ChangeTips,
-.ChangeQuestion {
-  font-weight: normal;
-  background-color: #898989;
-  border: solid 1px;
-  border-radius: 8px;
-  box-shadow: 0 2px 0;
-}
-
-.ChangeTips:hover,
-.ChangeQuestion:hover {
-  cursor: pointer;
-  opacity: 0.6;
-}
-
-.ChangeTips:active,
-.ChangeQuestion:active {
-  transform: translateY(2px);
-  box-shadow: 0 0 0 white;
-} */
-
 .ChangeTips a,
 .modal-open-wrapper a {
   background: #eee;
@@ -221,7 +181,7 @@ body {
   justify-content: space-around;
   align-items: center;
   margin: 0 auto;
-  max-width: 280px;
+  max-width: 200px;
   padding: 10px 25px;
   color: #313131;
   transition: 0.3s ease-in-out;
@@ -278,8 +238,7 @@ body {
   }
   
   .modal-container {
-    /* background-color: white; */
-    background-color: #36393e;
+    background-color: white;
     max-height: 90vh;
     max-width: 600px;
     width: 90%;
@@ -291,7 +250,7 @@ body {
     background: transparent;
     border: 0;
     cursor: pointer;
-    color: #FFFFFF;
+    color: black;
     margin-right: 20px;
   }
   
@@ -415,12 +374,11 @@ body {
 .inputform-text2 {
     display: inline-block;
     font-size: clamp(1px, 3vw, 16px);
-    color: #719DDC;
     margin-left: 10px;
 }
 
 /* ランダム質問 */
-.randomquestion2 {
+.randomquestion {
     
 }
 

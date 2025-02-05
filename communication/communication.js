@@ -39,7 +39,7 @@
         const RandomQuestionsNumber = Math.floor(Math.random() * questions.length);
         const RandomQuestion = questions[RandomQuestionsNumber];
         // document.querySelector('.randomquestion').textContent = RandomQuestion;
-        document.getElementById("randomquestion2").textContent = RandomQuestion;
+        document.getElementById("randomquestion").textContent = RandomQuestion;
     }
 
 
@@ -70,11 +70,17 @@
         let inputText5 = document.getElementById("InputBox5").value;
 
         // ランダム質問の取得
-        let currentQuestionText = document.getElementById("randomquestion2").textContent;
+        let currentQuestionText = document.getElementById("randomquestion").textContent;
 
         // 新しいセクションの生成
         renderSection(inputText1, inputText2, inputText3, inputText4, inputText5, currentQuestionText);
 
+        let formData = {
+            name:,
+            hobby:,
+            favorite:,
+            
+        }
 
         // テキストボックスの値を空白にする
         document.getElementById("InputBox1").value = '';
@@ -82,7 +88,6 @@
         document.getElementById("InputBox3").value = '';
         document.getElementById("InputBox4").value = '';
         document.getElementById("InputBox5").value = '';
-
     }
 
 

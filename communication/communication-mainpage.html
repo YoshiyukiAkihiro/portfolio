@@ -19,8 +19,17 @@
             <a href="###" class="admin">管理ページ(仮)</a>
         </div>
     </header>
+    <!-- ./ヘッダー -->
 
-    <!-- ランダムtips表示エリア -->
+    <!-- 見出し -->
+    <div class="profile-title">
+        <div class="container">
+            <h1>プロフィール共有ページ</h1>
+        </div>
+    </div>
+    <!-- ./見出し -->
+
+    <!-- ランダムtips -->
     <div class="tips-wrapper">
         <div class="container">
             <div class="tips">
@@ -29,10 +38,10 @@
                 </div>
                 <p>コミュニケーションのヒント:</p>
                 <p id="randomtips" class="randomtips"></p>                        <!-- ランダムtipsを <p> に表示 -->
-                <!-- <button type="button" class="ChangeTips" id="TipsChangeButton">次へ</button>      tipsをチェンジ -->
             </div>
         </div>
     </div>
+    <!-- ./ランダムtips -->
 
     <!-- Micromodal.js -->
     <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
@@ -85,9 +94,9 @@
                                     <!-- 質問の答え -->
                                     <div class="input-box">
                                         <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
-                                        <span class="inputform-text2 randomquestion2" id="randomquestion2"></span>
+                                        <span class="inputform-text2 randomquestion" id="randomquestion"></span>
                                         <div class="empty"></div>
-                                        <button type="button" id="QuestionChangeButton" class="ChangeQuestion">質問チェンジ</button>
+                                        <button type="button" id="QuestionChangeButton" class="ChangeQuestion">質問を変える</button>
                                         <input class="input" id="InputBox5">
                                     </div>
                                     <!-- 送信ボタン -->
@@ -103,30 +112,22 @@
             </div>
         </div>
     </div>
+    <!-- ./Micromodal.js -->
+
     <!-- モーダルウィンドウ開くボタン -->
     <div class="modal-open-wrapper">
         <a href="#" data-micromodal-trigger="modal-1" class="modal-open">プロフィール登録</a>
     </div>
-    <!-- <button data-micromodal-trigger="modal-1" class="modal-open">プロフィール登録</button> -->
-
+    <!-- ./モーダルウィンドウ開くボタン -->
 
     <!-- 回答用セクションの集まり -->
     <div class="sections-wrapper">
         <div class="container">
-            <!-- セクションのかたまり -->
-            <div class="sections" id="sections">
-                <!-- 送信ボタンで追加される要素
-                <div class="section">
-                    <p><span>　"名前：" + text1,　</span></p>
-                    <p><span>　"趣味、特技：" + text2,　</span></p>
-                    <p><span>　"一番ハマっているもの：" + text3,　</span></p>
-                    <p><span>　"好きな動画：" + text4,　</span></p>
-                    <p><span>　question　</span></p>
-                    <p><span>　"自由入力：" + text5　</span></p>
-                </div> -->
-            </div>
+            <!-- id="sections"にプロフィールを描画 -->
+            <div class="sections" id="sections"></div>      
         </div>
     </div>
+    <!-- ./回答用セクションの集まり -->
 
     <!-- <footer>
         <div class="footer-copyright">
