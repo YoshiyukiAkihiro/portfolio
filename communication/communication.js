@@ -73,6 +73,11 @@
         // document.getElementById("InputBox5").value = '';
     }
 
+    function QuestionTransfer() {
+        let inputText5 = document.getElementById("InputBox5").value;
+
+    }
+
 
     // HTML要素を描画
     // function renderSection(text1, text2, text3, text4, text5, question) {
@@ -106,15 +111,29 @@
     }
 
     // tipsチェンジボタン
-    TipsChangeButton.addEventListener("click", RenderRandomTips);
+    if(document.getElementById("TipsChangeButton")) {
+        TipsChangeButton.addEventListener("click", RenderRandomTips);
+    };
 
     // Questionチェンジボタン
-    // QuestionChangeButton.addEventListener('click', RenderRandomQuestion);
+    if(document.getElementById("QuestionChangeButton")) {
+        QuestionChangeButton.addEventListener('click', RenderRandomQuestion);
+    };
     
     // 送信ボタン押下時に転写
-    ProfileTransferButton.addEventListener('click', ProfileTransfer);
+    if(document.getElementById("ProfileTransferButton")) {
+        ProfileTransferButton.addEventListener('click', ProfileTransfer);
+    };
 
-    // RenderRandomQuestion();
+    // ランダム質問の描画
+    if(document.getElementById("randomquestion")) {
+        RenderRandomQuestion();
+    };
+    
+    // ランダムなコミュニケーションのヒント
+    if(document.getElementById("randomtips")) {
     RenderRandomTips();
+    };
+
 
 }
