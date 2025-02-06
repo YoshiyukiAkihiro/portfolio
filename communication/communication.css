@@ -140,22 +140,24 @@ body {
 }
 
 .menu a {
+  padding: 0 10px;
   color: #FFFFFF;
 }
 
-/* 見出し */
-.profile-title {
-  margin-top: 120px;
-  border-bottom: #313131;
+/* 見出し 「プロフィール共有」　「質問集」 */
+.profile-title,
+.question-title {
+  height: 40px;
+  margin: 120px 0;
   text-align: center;
+  border-bottom: 1px solid #B7B7B7;
 }
-
 
 /* ----------------------------------------------- */
 /* ------------------ランダムTips------------------ */
-.tips-wrapper {
+/* .tips-wrapper {
   margin-top: 120px;
-}
+} */
 
 .tips {
   height: 140px;
@@ -464,6 +466,10 @@ footer {
     color: #FFFFFF;
     font-size: 12px;
 }
+
+/* ------------------------------------------------------------------------------ */
+/* -----------------------question.html用のcss記述欄 ----------------------------- */
+/* ------------------------------------------------------------------------------ */
 
 
 

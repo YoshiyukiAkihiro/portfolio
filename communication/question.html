@@ -11,9 +11,71 @@
     <script defer src="C:/Users/urumo/Desktop/portfolio/portfolio/communication/communication.js"></script>
 </head>
 <body>
-    <div>
-        <h1>質問共有ページ</h1>
+    <!-- ヘッダー -->
+    <header class="header-menu">
+        <a href="C:/Users/User175dc/Desktop/portfolio/communication/communication-toppage.html" class="self-introduction">Top</a>
+        <div class="menu">
+            <a href="C:/Users/User175dc/Desktop/portfolio/communication/communication-mainpage.html" class="">プロフィール共有</a>
+            <a href="C:/Users/User175dc/Desktop/portfolio/communication/question.html" class="">質問集(仮)</a>
+            <a href="###" class="admin">管理ページ(仮)</a>
+        </div>
+    </header>
+    <!-- ./ヘッダー -->
+
+    <div class="question-title">
+        <div class="container">
+            <h1>質問共有ページ</h1>
+        </div>
     </div>
+
+    <!-- Micromodal.js -->
+    <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+        <!-- 背景のオーバーレイ -->
+        <div class="modal-overlay" tabindex="-1">
+            <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <header class="modal-header">
+                    <h2 class="modal-title" id="modal-1-title">質問に回答</h2>
+                    <!-- 閉じるボタン -->
+                    <button class="modal-close" aria-label="Close modal" data-micromodal-close></button>
+                </header>
+                <!-- モーダルのコンテンツ -->
+                <div class="modal-content" id="modal-1-content">
+
+                    <!-- 入力フォーム -->
+                    <div class="inputform-wrapper">
+                        <div class="container">
+                            <!-- 入力フォームの枠 -->
+                            <div class="inputform-border">
+                                <!-- 入力フォームの内側の周囲 -->
+                                <div class="input-inner">
+                                    <!-- 質問の答え -->
+                                    <div class="input-box">
+                                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
+                                        <span class="inputform-text2 randomquestion" id="randomquestion"></span>
+                                        <div class="empty"></div>
+                                        <button type="button" id="QuestionChangeButton" class="ChangeQuestion">質問を変える</button>
+                                        <input class="input" id="InputBox5">
+                                    </div>
+                                    <!-- 送信ボタン -->
+                                    <div class="input-box">
+                                        <button class="send" id="TransferButton" data-micromodal-close>送信</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./Micromodal.js -->
+
+    <!-- モーダルウィンドウ開くボタン -->
+    <div class="modal-open-wrapper">
+        <a href="#" data-micromodal-trigger="modal-1" class="modal-open">質問に回答</a>
+    </div>
+    <!-- ./モーダルウィンドウ開くボタン -->
 
 </body>
 </html>

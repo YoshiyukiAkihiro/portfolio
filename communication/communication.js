@@ -30,20 +30,18 @@
     // HTML要素を取得
     let TipsChangeButton = document.querySelector('#TipsChangeButton');
     let QuestionChangeButton = document.querySelector('#QuestionChangeButton');
-    let TransferButton = document.getElementById("TransferButton");
-    let TransferButton2 = document.getElementById("TransferButton2");
+    let ProfileTransferButton = document.getElementById("ProfileTransferButton");
 
 
-    // ランダムな質問を配列から取得し、Webページに描画
+    // ランダムな質問をWebページに描画
     function RenderRandomQuestion() {
         const RandomQuestionsNumber = Math.floor(Math.random() * questions.length);
         const RandomQuestion = questions[RandomQuestionsNumber];
-        // document.querySelector('.randomquestion').textContent = RandomQuestion;
-        document.getElementById("randomquestion").textContent = RandomQuestion;
+        document.getElementById('randomquestion').textContent = RandomQuestion;
     }
 
 
-    // ランダムなtipsを配列から取得し、Webページに描画
+    // ランダムなtipsをWebページに描画
     function RenderRandomTips() {
         const RandomTipsNumber = Math.floor(Math.random() * tips.length);
         const RandomTips = tips[RandomTipsNumber];
@@ -51,48 +49,34 @@
     }
 
 
-    // tipsチェンジボタン
-    TipsChangeButton.addEventListener("click", RenderRandomTips);
-
-
-    // Questionチェンジボタン
-    QuestionChangeButton.addEventListener('click', RenderRandomQuestion);
-
-
     // 送信ボタン(入力フォームの転写)
-    function Transfer() {
-
+    function ProfileTransfer() {
         // 各テキストボックスの値を取得
         let inputText1 = document.getElementById("InputBox1").value;
         let inputText2 = document.getElementById("InputBox2").value;
         let inputText3 = document.getElementById("InputBox3").value;
         let inputText4 = document.getElementById("InputBox4").value;
-        let inputText5 = document.getElementById("InputBox5").value;
+        // let inputText5 = document.getElementById("InputBox5").value;
 
         // ランダム質問の取得
-        let currentQuestionText = document.getElementById("randomquestion").textContent;
+        // let currentQuestionText = document.getElementById("randomquestion").textContent;
 
         // 新しいセクションの生成
-        renderSection(inputText1, inputText2, inputText3, inputText4, inputText5, currentQuestionText);
-
-        let formData = {
-            name:,
-            hobby:,
-            favorite:,
-            
-        }
+        renderSection(inputText1, inputText2, inputText3, inputText4);
+        // renderSection(inputText1, inputText2, inputText3, inputText4, inputText5, currentQuestionText);
 
         // テキストボックスの値を空白にする
         document.getElementById("InputBox1").value = '';
         document.getElementById("InputBox2").value = '';
         document.getElementById("InputBox3").value = '';
         document.getElementById("InputBox4").value = '';
-        document.getElementById("InputBox5").value = '';
+        // document.getElementById("InputBox5").value = '';
     }
 
 
-    // HTML要素を生成して描画
-    function renderSection(text1, text2, text3, text4, text5, question) {
+    // HTML要素を描画
+    // function renderSection(text1, text2, text3, text4, text5, question) {
+    function renderSection(text1, text2, text3, text4) {
         let sections = document.getElementById("sections");
 
         // <div class="section"> を作成
@@ -105,8 +89,8 @@
             "趣味、特技：" + text2,
             "一番ハマっているもの：" + text3,
             "好きな動画：" + text4,
-            question + "：",                           // ランダムな質問
-            text5                                      //　ランダムな質問の回答
+            // question + "：",                           // ランダムな質問
+            // text5                                      //　ランダムな質問の回答
         ];
 
         // 要素を動的に作成して追加
@@ -121,9 +105,16 @@
         sections.appendChild(div);                                  // id="sections"に<div>を追加
     }
 
-    TransferButton.addEventListener('click', Transfer);
+    // tipsチェンジボタン
+    TipsChangeButton.addEventListener("click", RenderRandomTips);
 
-    RenderRandomQuestion();
+    // Questionチェンジボタン
+    // QuestionChangeButton.addEventListener('click', RenderRandomQuestion);
+    
+    // 送信ボタン押下時に転写
+    ProfileTransferButton.addEventListener('click', ProfileTransfer);
+
+    // RenderRandomQuestion();
     RenderRandomTips();
 
 }
