@@ -48,6 +48,13 @@
                             <div class="inputform-border">
                                 <!-- 入力フォームの内側の周囲 -->
                                 <div class="input-inner">
+                                    <!-- 名前 -->
+                                    <div class="input-box">
+                                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
+                                        <span class="inputform-text2">名前：</span>
+                                        <div class="empty"></div>
+                                        <input class="input" id="InputBox1">
+                                    </div>
                                     <!-- 質問の答え -->
                                     <div class="input-box">
                                         <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
@@ -58,7 +65,7 @@
                                     </div>
                                     <!-- 送信ボタン -->
                                     <div class="input-box">
-                                        <button class="send" id="TransferButton" data-micromodal-close>送信</button>
+                                        <button class="send" id="QuestionTransferButton" data-micromodal-close>送信</button>
                                     </div>
                                 </div>
                             </div>
@@ -76,6 +83,15 @@
         <a href="#" data-micromodal-trigger="modal-1" class="modal-open">質問に回答</a>
     </div>
     <!-- ./モーダルウィンドウ開くボタン -->
+
+    <!-- 質問の回答描画エリア -->
+    <div class="sections-wrapper">
+        <div class="container">
+            <!-- id="sections"にプロフィールを描画 -->
+            <div class="sections" id="sections"></div>
+        </div>
+    </div>
+    <!-- ./質問の回答描画エリア -->
 
 </body>
 </html>
