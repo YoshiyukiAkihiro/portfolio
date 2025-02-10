@@ -1,4 +1,8 @@
 {
+    window.onload = function() {
+        renderAllQuestions();
+    };
+
     MicroModal.init({
         disableScroll: true,
         awaitOpenAnimation: true,
@@ -49,67 +53,102 @@
     }
 
 
-    // 送信ボタン(入力フォームの転写)
-    function ProfileTransfer() {
+    // プロフィールをLocalStorageへ保存(送信ボタン)
+    function ProfileSave() {
         // 各テキストボックスの値を取得
         let inputText1 = document.getElementById("InputBox1").value;
         let inputText2 = document.getElementById("InputBox2").value;
         let inputText3 = document.getElementById("InputBox3").value;
         let inputText4 = document.getElementById("InputBox4").value;
-        // let inputText5 = document.getElementById("InputBox5").value;
 
-        // ランダム質問の取得
-        // let currentQuestionText = document.getElementById("randomquestion").textContent;
+        let storageKey = "ProfileData";
+        let savedData = JSON.parse(localStorage.getItem(storageKey)) || [];
+
+        let filteredData = savedData.filter(entry => entry.name !== inputText1);
+        localStorage.setItem(storageKey, JSON.stringify(filteredData));
+
+        let newEntry = {
+            name: inputText1,
+            hobby: inputText2,
+            favoriteThing: inputText3,
+            favoriteVideo: inputText4
+        };
+        savedData.push(newEntry);
 
         // 新しいセクションの生成
         renderSection(inputText1, inputText2, inputText3, inputText4);
-        // renderSection(inputText1, inputText2, inputText3, inputText4, inputText5, currentQuestionText);
 
         // テキストボックスの値を空白にする
         document.getElementById("InputBox1").value = '';
         document.getElementById("InputBox2").value = '';
         document.getElementById("InputBox3").value = '';
         document.getElementById("InputBox4").value = '';
-        // document.getElementById("InputBox5").value = '';
     }
 
 
-
-    function QuestionTransfer() {
+    // 質問内容をLocalStrageへ保存(送信ボタン)
+    function QuestionSave() {
+        let inputText1 = document.getElementById("InputBox1").value;
         let inputText5 = document.getElementById("InputBox5").value;
-        
-        // let currentQuestionText = document.getElementById("randomquestion").textContent;
+        let currentQuestionText = document.getElementById("randomquestion").textContent;
+
+        let storageKey = "questionData";                                                        // LocalStrageのキーを指定
+        let savedData = JSON.parse(localStorage.getItem(storageKey)) || [];                     // LocalStrageからキーを指定して配列を取得
+
+        let existEntry = savedData.find(entry => entry.name === inputText1);                    // 既に同じ名前のデータがあるか確認
+
+        if(existEntry) {
+            existEntry.questions.push({ question:currentQuestionText, answer:inputText5});      // 既にLocalStrageに同じ名前が存在する場合、questionsの中に配列を
+        } else {
+            let newEntry = {
+                name: inputText1,
+                questions: [
+                    {question: currentQuestionText, answer: inputText5}
+                ]
+            };
+            savedData.push(newEntry);
+        }
+
+        localStorage.setItem(storageKey,JSON.stringify(savedData));                              // LocalStrageの更新
+
+        renderAllQuestions();                                                                    // UIに反映
+
+        document.getElementById("InputBox5").value = "";
     }
 
 
 
-    // HTML要素を描画
-    // function renderSection(text1, text2, text3, text4, text5, question) {
-    function renderSection(text1, text2, text3, text4) {
-
-        // 描画するテキストリスト
-        let texts = [
-            "名前：" + text1,
-            "趣味、特技：" + text2,
-            "一番ハマっているもの：" + text3,
-            "好きな動画：" + text4,
-            // question + "：",                           // ランダムな質問
-            // text5                                      //　ランダムな質問の回答
-        ];
-
+    // 質問部分の描画 (HTML要素を生成)
+    function renderAllQuestions() {
+        sections.innerHTML = "";                                    // 既存の表示をクリア
         let sections = document.getElementById("sections");
 
-        // <div class="section"> を作成
-        let div = document.createElement("div");
-        div.className = "section";
+        let savedData = JSON.parse(localStorage.getItem("questionData")) || [];
 
-        // 要素を動的に作成して追加
-        texts.forEach(text => {
+
+        savedData.forEach(entry => {                                     // HTMLタグを作成して描画
+            let div = document.createElement("div");                    // <div class="section"> を作成
+            div.className = "section";
             let p = document.createElement("p");                        // Javascript上で<p>タグを作成
             let span = document.createElement("span");
-            span.textContent = text;
+            span.textContent = "名前：" + entry.name;
             div.appendChild(p);                                     // <div> の中に <p> をいれる
             p.appendChild(span);                                        // <p> の中に <span> を追加
+        
+            entry.questions.forEach(q => {
+                let questionP = document.createElement("p");
+                let questionSpan = document.createElement("span");
+                questionSpan.textContent = q.question + ":";
+                questionP.appendChild(questionSpan);
+    
+                let answerP = document.createElement("p");
+                let answerSpan = document.createElement("span");
+                answerSpan.textContent = q.answer;
+                answerP.appendChild(answerSpan);
+    
+                div.appendChild(questionP);
+                div.appendChild(answerP);
+            });
         });
 
         sections.appendChild(div);                                  // id="sections"に<div>を追加
