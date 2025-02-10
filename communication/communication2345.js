@@ -35,7 +35,7 @@
     let TipsChangeButton = document.querySelector('#TipsChangeButton');
     let QuestionChangeButton = document.querySelector('#QuestionChangeButton');
     let ProfileTransferButton = document.getElementById("ProfileTransferButton");
-    
+    let QuestionTransferButton = document.getElementById("QuestionTransferButton");
 
     // ランダムな質問をWebページに描画
     function RenderRandomQuestion() {
@@ -98,7 +98,12 @@
         let existEntry = savedData.find(entry => entry.name === inputText1);                    // 既に同じ名前のデータがあるか確認
 
         if(existEntry) {
+
+            if (!existEntry.questions) {
+                existEntry.questions = [];
+            }
             existEntry.questions.push({ question:currentQuestionText, answer:inputText5});      // 既にLocalStrageに同じ名前が存在する場合、questionsの中に配列を
+
         } else {
             let newEntry = {
                 name: inputText1,
@@ -109,19 +114,23 @@
             savedData.push(newEntry);
         }
 
+        console.log("保存前のデータ:", savedData);                                                      // デバッグ用
         localStorage.setItem(storageKey,JSON.stringify(savedData));                              // LocalStrageの更新
+        console.log("保存後のデータ:", JSON.parse(localStorage.getItem(storageKey)));                   // デバッグ用
 
         renderAllQuestions();                                                                    // UIに反映
 
+        document.getElementById("InputBox1").value = "";
         document.getElementById("InputBox5").value = "";
+
     }
 
 
 
     // 質問部分の描画 (HTML要素を生成)
     function renderAllQuestions() {
-        sections.innerHTML = "";                                    // 既存の表示をクリア
         let sections = document.getElementById("sections");
+        sections.innerHTML = "";                                    // 既存の表示をクリア
 
         let savedData = JSON.parse(localStorage.getItem("questionData")) || [];
 
@@ -149,9 +158,9 @@
                 div.appendChild(questionP);
                 div.appendChild(answerP);
             });
-        });
 
-        sections.appendChild(div);                                  // id="sections"に<div>を追加
+            sections.appendChild(div);                                  // id="sections"に<div>を追加
+        });
     }
 
 
@@ -171,6 +180,11 @@
         ProfileTransferButton.addEventListener('click', ProfileTransfer);
     };
 
+    // 質問をLocalStorageへ保存 (送信ボタン)
+    if(document.getElementById("QuestionTransferButton")) {
+        QuestionTransferButton.addEventListener('click', QuestionSave);
+    };
+
     // ランダム質問の描画
     if(document.getElementById("randomquestion")) {
         RenderRandomQuestion();
@@ -180,6 +194,5 @@
     if(document.getElementById("randomtips")) {
     RenderRandomTips();
     };
-
 
 }
