@@ -1,10 +1,11 @@
 {
     window.onload = function() {
-        if(document.getElementById("QuestionTransferButton")) {
+        // if(document.getElementById("QuestionTransferButton")) {
+        if(document.getElementById("questionSections")) {
             renderAllQuestions();
         }
 
-        if (document.getElementById("ProfileTransferButton")) {
+        if (document.getElementById("profileSections")) {
             renderAllProfiles();
         }
     };
@@ -145,7 +146,7 @@
 
     // プロフィール部分の描画
     function renderAllProfiles() {
-        let sections = document.getElementById("sections");
+        let sections = document.getElementById("profileSections");
         sections.innerHTML = "";
         let savedData = JSON.parse(localStorage.getItem("ProfileData")) || [];
 
@@ -180,7 +181,7 @@
 
     // 質問部分の描画 (HTML要素を生成)
     function renderAllQuestions() {
-        let sections = document.getElementById("sections");
+        let sections = document.getElementById("questionSections");
         sections.innerHTML = "";                                    // 既存の表示をクリア
 
         let savedData = JSON.parse(localStorage.getItem("questionData")) || [];
