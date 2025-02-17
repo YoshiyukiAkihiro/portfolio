@@ -1,4 +1,15 @@
 {
+    window.onload = function() {
+        // if(document.getElementById("QuestionTransferButton")) {
+        if(document.getElementById("questionSections")) {
+            renderAllQuestions();
+        }
+
+        if (document.getElementById("profileSections")) {
+            renderAllProfiles();
+        }
+    };
+
     MicroModal.init({
         disableScroll: true,
         awaitOpenAnimation: true,
@@ -27,11 +38,13 @@
         'メラビアンの法則によると、コミュニケーションから受け取る情報の55%が「表情、身ぶり手ぶり」38%が「口調、抑揚、語調」7%が「話した内容」になるそうです。',
     ];
 
-    // HTML要素を取得
-    let TipsChangeButton = document.querySelector('#TipsChangeButton');
-    let QuestionChangeButton = document.querySelector('#QuestionChangeButton');
-    let ProfileTransferButton = document.getElementById("ProfileTransferButton");
     
+    // HTML要素を取得
+    let TipsChangeButton = document.querySelector('#TipsChangeButton');                 // コミュニケーションのヒントを次に進めるボタン
+    let QuestionChangeButton = document.querySelector('#QuestionChangeButton');             // 質問内容を他のものに変更するボタン
+    let ProfileTransferButton = document.getElementById("ProfileTransferButton");       // プロフィールの送信ボタン
+    let QuestionTransferButton = document.getElementById("QuestionTransferButton");         // 質問の送信ボタン
+
 
     // ランダムな質問をWebページに描画
     function RenderRandomQuestion() {
@@ -39,6 +52,7 @@
         const RandomQuestion = questions[RandomQuestionsNumber];
         document.getElementById('randomquestion').textContent = RandomQuestion;
     }
+
 
 
     // ランダムなtipsをWebページに描画
@@ -49,70 +63,156 @@
     }
 
 
-    // 送信ボタン(入力フォームの転写)
-    function ProfileTransfer() {
-        // 各テキストボックスの値を取得
+
+    // プロフィールをLocalStorageへ保存(送信ボタン)
+    function ProfileSave() {
         let inputText1 = document.getElementById("InputBox1").value;
-        let inputText2 = document.getElementById("InputBox2").value;
-        let inputText3 = document.getElementById("InputBox3").value;
-        let inputText4 = document.getElementById("InputBox4").value;
-        // let inputText5 = document.getElementById("InputBox5").value;
+        let storageKey = "ProfileData";
+        let savedData = JSON.parse(localStorage.getItem(storageKey)) || [];
 
-        // ランダム質問の取得
-        // let currentQuestionText = document.getElementById("randomquestion").textContent;
+        let sameNameExist = savedData.find(entry => entry.name === inputText1);
 
-        // 新しいセクションの生成
-        renderSection(inputText1, inputText2, inputText3, inputText4);
-        // renderSection(inputText1, inputText2, inputText3, inputText4, inputText5, currentQuestionText);
+        let newEntry = {
+            name: document.getElementById("InputBox1").value,
+            hobby: document.getElementById("InputBox2").value,
+            favoriteThing: document.getElementById("InputBox3").value,
+            favoriteVideo: document.getElementById("InputBox4").value
+        };
+
+        if(sameNameExist) {
+            DataWithNoNameMatch = savedData.filter(entry => entry.name !== inputText1);         // テキストボックスに入力した名前と一致しないデータを配列として返す
+            DataWithNoNameMatch.push(newEntry);
+            localStorage.setItem(storageKey, JSON.stringify(DataWithNoNameMatch));
+        } else {
+            savedData.push(newEntry);
+            localStorage.setItem(storageKey, JSON.stringify(savedData));
+        }
+
+        // プロフィールの描画
+        renderAllProfiles();
 
         // テキストボックスの値を空白にする
-        document.getElementById("InputBox1").value = '';
-        document.getElementById("InputBox2").value = '';
-        document.getElementById("InputBox3").value = '';
-        document.getElementById("InputBox4").value = '';
-        // document.getElementById("InputBox5").value = '';
+        document.getElementById("InputBox1").value = "";
+        document.getElementById("InputBox2").value = "";
+        document.getElementById("InputBox3").value = "";
+        document.getElementById("InputBox4").value = "";
     }
 
 
 
-    function QuestionTransfer() {
+    // 質問内容をLocalStrageへ保存(送信ボタン)
+    function QuestionSave() {
+        let inputText1 = document.getElementById("InputBox1").value;
         let inputText5 = document.getElementById("InputBox5").value;
-        
-        // let currentQuestionText = document.getElementById("randomquestion").textContent;
+        let currentQuestionText = document.getElementById("randomquestion").textContent;
+
+        let storageKey = "questionData";                                                        // LocalStrageのキーを指定
+        let savedData = JSON.parse(localStorage.getItem(storageKey)) || [];                     // LocalStrageからキーを指定して配列を取得
+
+        let sameNameExist = savedData.find(entry => entry.name === inputText1);                    // 既に同じ名前のデータがあるか確認
+
+        if(sameNameExist) {
+            
+            let existQuestion = sameNameExist.questions.find(q => q.question === currentQuestionText);       //　既存の質問の検索
+            if(existQuestion) {                                                                         // 名前も質問も一致するものが存在する場合
+                existQuestion.answer = inputText5;
+            } else {
+                sameNameExist.questions.push({ question:currentQuestionText, answer:inputText5});      // 既にLocalStrageに同じ名前が存在する場合、questionsの中に配列を
+            }
+
+        } else {
+            let newEntry = {
+                name: inputText1,
+                questions: [
+                    {question: currentQuestionText, answer: inputText5}
+                ]
+            };
+            savedData.push(newEntry);
+        }
+
+        console.log("保存前のデータ:", savedData);                                                      // デバッグ用
+        localStorage.setItem(storageKey,JSON.stringify(savedData));                              // LocalStrageの更新
+        console.log("保存後のデータ:", JSON.parse(localStorage.getItem(storageKey)));                   // デバッグ用
+
+        if(document.getElementById("QuestionTransferButton")) {
+            renderAllQuestions();                                                                    // UIに反映
+        }
+
+        document.getElementById("InputBox1").value = "";
+        document.getElementById("InputBox5").value = "";                                     // テキストボックスを全て空に
     }
 
 
 
-    // HTML要素を描画
-    // function renderSection(text1, text2, text3, text4, text5, question) {
-    function renderSection(text1, text2, text3, text4) {
+    // プロフィール部分の描画
+    function renderAllProfiles() {
+        let sections = document.getElementById("profileSections");
+        sections.innerHTML = "";
+        let savedData = JSON.parse(localStorage.getItem("ProfileData")) || [];
 
-        // 描画するテキストリスト
-        let texts = [
-            "名前：" + text1,
-            "趣味、特技：" + text2,
-            "一番ハマっているもの：" + text3,
-            "好きな動画：" + text4,
-            // question + "：",                           // ランダムな質問
-            // text5                                      //　ランダムな質問の回答
-        ];
+        savedData.forEach(profiles => {
+            let div = document.createElement("div");
+            div.className = "section";
+            
+            let nameP = document.createElement("p");
+            nameP.textContent = "名前：" + profiles.name;
 
-        let sections = document.getElementById("sections");
+            let hobbyP = document.createElement("p");
+            hobbyP.textContent = "趣味、特技：" + profiles.hobby;
+        
+            let favoriteThingP = document.createElement("p");
+            favoriteThingP.textContent = "一番ハマっているもの：" + profiles.favoriteThing;
+            
+            let favoriteVideoP = document.createElement("p");
+            favoriteVideoP.textContent = "好きな動画(テレビ、ネット、サブスク、映画等)：" + profiles.favoriteVideo;
 
-        // <div class="section"> を作成
-        let div = document.createElement("div");
-        div.className = "section";
+            // `div` に追加
+            div.appendChild(nameP);
+            div.appendChild(hobbyP);
+            div.appendChild(favoriteThingP);
+            div.appendChild(favoriteVideoP);
 
-        // 要素を動的に作成して追加
-        texts.forEach(text => {
+            // `profileSections` に追加
+            sections.appendChild(div);
+        });
+    }
+
+
+
+    // 質問部分の描画 (HTML要素を生成)
+    function renderAllQuestions() {
+        let sections = document.getElementById("questionSections");
+        sections.innerHTML = "";                                    // 既存の表示をクリア
+
+        let savedData = JSON.parse(localStorage.getItem("questionData")) || [];
+
+
+        savedData.forEach(entry => {                                     // HTMLタグを作成して描画
+            let div = document.createElement("div");                    // <div class="section"> を作成
+            div.className = "section";
             let p = document.createElement("p");                        // Javascript上で<p>タグを作成
             let span = document.createElement("span");
-            span.textContent = text;
+            span.textContent = "名前：" + entry.name;
             div.appendChild(p);                                     // <div> の中に <p> をいれる
             p.appendChild(span);                                        // <p> の中に <span> を追加
-        });
+        
+            entry.questions.forEach(q => {                              // 
+                let questionP = document.createElement("p");
+                let questionSpan = document.createElement("span");
+                questionSpan.textContent = q.question + ":";
+                questionP.appendChild(questionSpan);
+    
+                let answerP = document.createElement("p");
+                let answerSpan = document.createElement("span");
+                answerSpan.textContent = q.answer;
+                answerP.appendChild(answerSpan);
+    
+                div.appendChild(questionP);
+                div.appendChild(answerP);
+            });
 
-        sections.appendChild(div);                                  // id="sections"に<div>を追加
+            sections.appendChild(div);                                  // id="sections"に<div>を追加
+        });
     }
 
 
@@ -127,9 +227,14 @@
         QuestionChangeButton.addEventListener('click', RenderRandomQuestion);
     };
     
-    // 送信ボタン押下時に転写
+    // プロフィールをLocalStorageへ保存 (送信ボタン)
     if(document.getElementById("ProfileTransferButton")) {
-        ProfileTransferButton.addEventListener('click', ProfileTransfer);
+        ProfileTransferButton.addEventListener('click', ProfileSave);
+    };
+
+    // 質問をLocalStorageへ保存 (送信ボタン)
+    if(document.getElementById("QuestionTransferButton")) {
+        QuestionTransferButton.addEventListener('click', QuestionSave);
     };
 
     // ランダム質問の描画
@@ -141,6 +246,5 @@
     if(document.getElementById("randomtips")) {
     RenderRandomTips();
     };
-
 
 }

@@ -166,15 +166,37 @@
             let favoriteVideoP = document.createElement("p");
             favoriteVideoP.textContent = "好きな動画(テレビ、ネット、サブスク、映画等)：" + profiles.favoriteVideo;
 
+            let deleteButton = document.createElement("button");                                            // ボタン要素を生成し、data-name=""にlocalStorageからProfileDataオブジェクト内の キー:name に対応する要素を入れる
+            deleteButton.textContent = "削除";
+            deleteButton.className = "delete-button";
+            deleteButton.setAttribute("data-name", profiles.name);
+
+            deleteButton.addEventListener("click", () => {                                                  // 削除ボタンのイベントリスナー
+                deleteProfile(profiles.name);
+            });
+            
+
             // `div` に追加
             div.appendChild(nameP);
             div.appendChild(hobbyP);
             div.appendChild(favoriteThingP);
             div.appendChild(favoriteVideoP);
+            div.appendChild(deleteButton);
 
             // `profileSections` に追加
             sections.appendChild(div);
         });
+    }
+
+    function deleteProfile(ProfileData_name) {
+        let storageKey = "ProfileData";
+        let savedData = JSON.parse(localStorage.getItem(storageKey)) || [];
+
+        let updateData = savedData.filter(profileData => profileData.name !== ProfileData_name);
+
+        localStorage.setItem(storageKey, JSON.stringify(updateData));
+
+        renderAllProfiles()
     }
 
 
