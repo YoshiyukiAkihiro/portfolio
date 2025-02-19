@@ -423,17 +423,24 @@ body {
 }
 
 /* セクション１つ */
-.section {
-    height: 340px;
+.profileSection,
+.questionSection {
+    /* height: 340px; */
     border: 1px solid #555555;
     width: 50%;
 }
 
+.profileSection p:nth-child(odd),
+.questionSection p:nth-child(4n+1),
+.questionSection p:nth-child(4n+2) {
+  background-color: #bad4f7;
+}
+
 /* セクション内部の行 */
-.section p {
+.profileSection p,
+.questionSection p {
     text-align: left;
-    padding-left: 10px;
-    margin: 10px 0 10px 0;
+    padding: 5px 0 5px 10px;
 }
 
 /* セクション内入力用テキストボックス */
@@ -473,6 +480,7 @@ footer {
 
 
 
+
 /* ---------------------------------------------------- */
 /* ------------------スマホ用レイアウト------------------ */
 @media all and (max-width: 768px) {
@@ -481,7 +489,8 @@ footer {
         align-items:center;
     }
 
-    .section {
+    .profileSection,
+    .questionSection {
         width: 80%;
     }
 }
