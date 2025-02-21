@@ -2,10 +2,11 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>質問共有ページ</title>
+    <title>メインページ</title>
     <link rel="stylesheet" href="C:/Users/User175dc/Desktop/portfolio/communication/communication.css">
     <!-- <script defer src="C:/Users/User175dc/Desktop/portfolio/communication/communication.js"></script> -->
-    <script defer src="C:/Users/User175dc/Desktop/portfolio/communication/communication-test.js"></script>
+    <!-- <script defer src="C:/Users/User175dc/Desktop/portfolio/communication/communication-test.js"></script> -->
+    <script defer src="C:/Users/User175dc/Desktop/portfolio/communication/communication-test2.js"></script>
     <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
     <!-- あとで消去 -->
     <link rel="stylesheet" href="C:/Users/urumo/Desktop/portfolio/portfolio/communication/communication.css">
@@ -16,18 +17,34 @@
     <header class="header-menu">
         <a href="C:/Users/User175dc/Desktop/portfolio/communication/communication-toppage.html" class="self-introduction">Top</a>
         <div class="menu">
-            <a href="C:/Users/User175dc/Desktop/portfolio/communication/communication-mainpage.html" class="">プロフィール共有</a>
-            <a href="C:/Users/User175dc/Desktop/portfolio/communication/question.html" class="">質問集</a>
-            <a href="C:/Users/User175dc/Desktop/portfolio/communication/communicaton-adminpage.html" class="admin">管理ページ</a>
+            <a href="C:/Users/User175dc/Desktop/portfolio/communication/profileSharing-page.html" class="">プロフィール共有</a>
+            <a href="C:/Users/User175dc/Desktop/portfolio/communication/questionSharing-page.html" class="">質問を共有</a>
+            <a href="C:/Users/User175dc/Desktop/portfolio/communication/admin-page.html" class="admin">管理ページ</a>
         </div>
     </header>
     <!-- ./ヘッダー -->
 
-    <div class="question-title">
+    <!-- 見出し -->
+    <div class="profile-title">
         <div class="container">
-            <h1>質問共有ページ</h1>
+            <h1>プロフィール共有</h1>
         </div>
     </div>
+    <!-- ./見出し -->
+
+    <!-- ランダムtips -->
+    <div class="tips-wrapper">
+        <div class="container">
+            <div class="tips">
+                <div class="ChangeTips">
+                    <a href="#" id="TipsChangeButton">次へ</a>
+                </div>
+                <p>コミュニケーションのヒント:</p>
+                <p id="randomtips" class="randomtips"></p>                        <!-- ランダムtipsを <p> に表示 -->
+            </div>
+        </div>
+    </div>
+    <!-- ./ランダムtips -->
 
     <!-- Micromodal.js -->
     <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
@@ -35,7 +52,7 @@
         <div class="modal-overlay" tabindex="-1">
             <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
                 <header class="modal-header">
-                    <h2 class="modal-title" id="modal-1-title">質問に回答</h2>
+                    <h2 class="modal-title" id="modal-1-title">プロフィール登録</h2>
                     <!-- 閉じるボタン -->
                     <button class="modal-close" aria-label="Close modal" data-micromodal-close></button>
                 </header>
@@ -56,17 +73,30 @@
                                         <div class="empty"></div>
                                         <input class="input" id="InputBox1">
                                     </div>
-                                    <!-- 質問の答え -->
+                                    <!-- 趣味、特技 -->
                                     <div class="input-box">
                                         <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
-                                        <span class="inputform-text2 randomquestion" id="randomquestion"></span>
+                                        <span class="inputform-text2">趣味、特技：</span>
                                         <div class="empty"></div>
-                                        <button type="button" id="QuestionChangeButton" class="ChangeQuestion">質問を変える</button>
-                                        <input class="input" id="InputBox5">
+                                        <input class="input" id="InputBox2">
+                                    </div>
+                                    <!-- 一番ハマっているもの -->
+                                    <div class="input-box">
+                                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
+                                        <span class="inputform-text2">一番ハマっているもの：</span>
+                                        <div class="empty"></div>
+                                        <input class="input" id="InputBox3">
+                                    </div>
+                                    <!-- 好きな動画媒体(テレビ、ネット、サブスク等) -->
+                                    <div class="input-box">
+                                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
+                                        <span class="inputform-text2">好きな動画(テレビ、ネット、サブスク、映画等)：</span>
+                                        <div class="empty"></div>
+                                        <input class="input" id="InputBox4">
                                     </div>
                                     <!-- 送信ボタン -->
                                     <div class="input-box">
-                                        <button class="send" id="QuestionTransferButton" data-micromodal-close>送信</button>
+                                        <button class="send" id="ProfileTransferButton" data-micromodal-close>送信</button>
                                     </div>
                                 </div>
                             </div>
@@ -81,18 +111,23 @@
 
     <!-- モーダルウィンドウ開くボタン -->
     <div class="modal-open-wrapper">
-        <a href="#" data-micromodal-trigger="modal-1" class="modal-open">質問に回答</a>
+        <a href="#" data-micromodal-trigger="modal-1" class="modal-open">プロフィール登録</a>
     </div>
     <!-- ./モーダルウィンドウ開くボタン -->
 
-    <!-- 質問の回答描画エリア -->
+    <!-- プロフィールの描画エリア -->
     <div class="sections-wrapper">
         <div class="container">
             <!-- id="sections"にプロフィールを描画 -->
-            <div class="sections" id="questionSections"></div>
+            <div class="sections" id="profileSections"></div>      
         </div>
     </div>
-    <!-- ./質問の回答描画エリア -->
+    <!-- ./プロフィールの描画エリア -->
 
+    <!-- <footer>
+        <div class="footer-copyright">
+            <span class="footer-copyright-text">Copyright&nbsp;©&nbsp;2025</span>
+        </div>
+    </footer> -->
 </body>
 </html>

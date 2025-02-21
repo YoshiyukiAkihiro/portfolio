@@ -255,42 +255,39 @@
     function deleteQuestion(questionData_name) {
         let storageKey = "questionData";
         let questionSavedData = JSON.parse(localStorage.getItem(storageKey)) || [];
-
         let updateQuestionData = questionSavedData.filter(questionData => questionData.name !== questionData_name);
-
         localStorage.setItem(storageKey, JSON.stringify(updateQuestionData));
-
         renderAllQuestions()
     }
 
 
     // tipsチェンジボタン
-    if(document.getElementById("TipsChangeButton")) {
+    if(document.title === "メインページ") {
         TipsChangeButton.addEventListener("click", RenderRandomTips);
     };
 
     // Questionチェンジボタン
-    if(document.getElementById("QuestionChangeButton")) {
+    if(document.title === "質問共有ページ") {
         QuestionChangeButton.addEventListener('click', RenderRandomQuestion);
     };
     
     // プロフィールをLocalStorageへ保存 (送信ボタン)
-    if(document.getElementById("ProfileTransferButton")) {
+    if(document.title === "メインページ") {
         ProfileTransferButton.addEventListener('click', ProfileSave);
     };
 
     // 質問をLocalStorageへ保存 (送信ボタン)
-    if(document.getElementById("QuestionTransferButton")) {
+    if(document.title === "質問共有ページ") {
         QuestionTransferButton.addEventListener('click', QuestionSave);
     };
 
     // ランダム質問の描画
-    if(document.getElementById("randomquestion")) {
+    if(document.title === "質問共有ページ") {
         RenderRandomQuestion();
     };
     
     // ランダムなコミュニケーションのヒント
-    if(document.getElementById("randomtips")) {
+    if(document.title === "メインページ") {
         RenderRandomTips();
     };
 
