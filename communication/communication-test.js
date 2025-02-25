@@ -1,6 +1,5 @@
 {
     window.onload = function() {
-        // if(document.getElementById("QuestionTransferButton")) {
         if(document.getElementById("questionSections")) {
             renderAllQuestions();
         }
@@ -100,7 +99,7 @@
 
 
 
-    // 質問内容をLocalStrageへ保存(送信ボタン)
+    // 質問内容をLocalStorageへ保存(送信ボタン)
     function QuestionSave() {
         let inputText1 = document.getElementById("InputBox1").value;
         let inputText5 = document.getElementById("InputBox5").value;
@@ -123,9 +122,7 @@
         } else {
             let newEntry = {
                 name: inputText1,
-                questions: [
-                    {question: currentQuestionText, answer: inputText5}
-                ]
+                questions: [{question: currentQuestionText, answer: inputText5}]
             };
             savedData.push(newEntry);
         }
@@ -185,7 +182,13 @@
         });
     }
 
-
+    // 管理ページリンクをクリックした際のパスワード入力関数
+    function gate() {
+        let UserInput = prompt("パスワードを入力して下さい:","");
+        if (UserInput !== null) {
+            location.href = UserInput + ".html";                                    // パスワードが入力されたら管理ページへ遷移
+        }
+    }
 
     // 指定した名前のプロフィールデータを削除する関数
     function deleteProfile(ProfileData_name) {
@@ -208,7 +211,7 @@
         let savedData = JSON.parse(localStorage.getItem("questionData")) || [];
 
         
-        savedData.forEach(questionData => {                                     //  <div class="questiionSection">
+        savedData.forEach(questionData => {                                     //  <div class="questionSection">
             let div = document.createElement("div");                            //      <p>名前：</p>
             div.className = "questionSection";                                  //      <p>吉行昭洋</p>                          localstorage → questionData → {name: "吉行昭洋"}
             let p = document.createElement("p");                                //  </div>
@@ -229,7 +232,7 @@
                 answerSpan.textContent = q.answer;
                 answerP.appendChild(answerSpan);
     
-                div.appendChild(questionP);                                     //  <div class="questiionSection"></div>　に<p>要素を入れる
+                div.appendChild(questionP);                                     //  <div class="questionSection"></div>　に<p>要素を入れる
                 div.appendChild(answerP);
             });
 
@@ -260,35 +263,15 @@
         renderAllQuestions()
     }
 
-
-    // tipsチェンジボタン
     if(document.title === "メインページ") {
-        TipsChangeButton.addEventListener("click", RenderRandomTips);
+        TipsChangeButton.addEventListener("click", RenderRandomTips);           // tipsチェンジボタン
+        ProfileTransferButton.addEventListener('click', ProfileSave);                     // プロフィールをLocalStorageへ保存 (送信ボタン)
+        RenderRandomTips();                                             // ランダムなコミュニケーションのヒント
     };
 
-    // Questionチェンジボタン
     if(document.title === "質問共有ページ") {
-        QuestionChangeButton.addEventListener('click', RenderRandomQuestion);
+        QuestionTransferButton.addEventListener('click', QuestionSave);                     // 質問をLocalStorageへ保存 (送信ボタン)
+        QuestionChangeButton.addEventListener('click', RenderRandomQuestion);                   // Questionチェンジボタン
+        RenderRandomQuestion();                                                 // ランダム質問の描画
     };
-    
-    // プロフィールをLocalStorageへ保存 (送信ボタン)
-    if(document.title === "メインページ") {
-        ProfileTransferButton.addEventListener('click', ProfileSave);
-    };
-
-    // 質問をLocalStorageへ保存 (送信ボタン)
-    if(document.title === "質問共有ページ") {
-        QuestionTransferButton.addEventListener('click', QuestionSave);
-    };
-
-    // ランダム質問の描画
-    if(document.title === "質問共有ページ") {
-        RenderRandomQuestion();
-    };
-    
-    // ランダムなコミュニケーションのヒント
-    if(document.title === "メインページ") {
-        RenderRandomTips();
-    };
-
 }

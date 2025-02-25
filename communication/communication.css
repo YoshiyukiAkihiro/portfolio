@@ -13,9 +13,7 @@
 /* ------------------------------------------------------------------------------ */
 
 body {
-    /* font-family:'メイリオ', 'Meiryo', sans-serif; */
     font-family: Arial, Helvetica, sans-serif;
-    /* background-color: #36393e; */
 }
 
 .title-wrapper {
@@ -81,19 +79,11 @@ body {
 }
 
 .portfolio-item {
-  /* width: 33%; */
   margin: 0 10px;
   margin-bottom: 20px;
 }
 
-.portfolio-image-wrapper {
-  /* display: inline-block; */
-  /* width: 80%; */
-}
-
 .portfolio-image {
-  /* margin: 0;
-  padding: 0; */
   display: block;
   margin: 0 auto;
 }
@@ -128,6 +118,7 @@ body {
     align-items: center;
     position: fixed;
     top: 0;
+    z-index: 1000;
 }
 
 .self-introduction {
@@ -155,9 +146,6 @@ body {
 
 /* ----------------------------------------------- */
 /* ------------------ランダムTips------------------ */
-/* .tips-wrapper {
-  margin-top: 120px;
-} */
 
 .tips {
   height: 140px;
@@ -170,8 +158,6 @@ body {
   margin-left: 20px;
   font-size: 16px;
   font-weight: normal;
-  /* color: orange; */
-  /* font-size: clamp(1px, 5vw, 24px); */
 }
 
 .ChangeTips a,
@@ -189,11 +175,13 @@ body {
   transition: 0.3s ease-in-out;
   font-weight: 500;
 }
+
 .ChangeTips a:hover,
 .modal-open-wrapper a:hover {
   background: #313131;
   color: #FFF;
 }
+
 .ChangeTips a:after,
 .modal-open-wrapper a:after {
   content: '';
@@ -208,6 +196,7 @@ body {
   border-radius: 1px;
   transition: 0.3s ease-in-out;
 }
+
 .ChangeTips a:hover:after,
 .modal-open-wrapper a:hover:after {
   border-color: #FFF;
@@ -261,19 +250,9 @@ body {
   }
   
   .modal-content {
-    /* line-height: 1.5; */
     margin-bottom: 2rem;
     margin-top: 2rem;
   }
-  
-  /* .modal-open {
-    display: block;
-    margin: 140px auto 0 auto;
-    background-color: #898989;
-    border: solid 1px white;
-    border-radius: 8px;
-    box-shadow: 0 2px 0 white;
-  } */
 
   /* モーダルアニメーション */
 @keyframes mmfadeIn {
@@ -351,9 +330,6 @@ body {
 /* 入力フォームの枠 */
 .inputform-border {
     display: flex;
-    /* border: 1px solid #777777;
-    max-width: 600px;
-    height: 340px; */
     margin: 0 auto;
 }
 
@@ -372,16 +348,11 @@ body {
     margin-bottom: 20px;
 }
 
-/* 「必須」の右の文字列 */
+/* 入力フォームの各文字列(名前、趣味、特技) */
 .inputform-text2 {
     display: inline-block;
     font-size: clamp(1px, 3vw, 16px);
     margin-left: 10px;
-}
-
-/* ランダム質問 */
-.randomquestion {
-    
 }
 
 /* 改行用の空要素 */
