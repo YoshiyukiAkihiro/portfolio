@@ -1,6 +1,5 @@
 {
     window.onload = function() {
-        // if(document.getElementById("QuestionTransferButton")) {
         if(document.getElementById("questionSections")) {
             renderAllQuestions();
         }
@@ -14,7 +13,7 @@
         disableScroll: true,
         awaitOpenAnimation: true,
         awaitCloseAnimation: true
-      });
+    });
 
     const questions = [
         '好きな食べ物は何ですか？',
@@ -38,22 +37,19 @@
         'メラビアンの法則によると、コミュニケーションから受け取る情報の55%が「表情、身ぶり手ぶり」38%が「口調、抑揚、語調」7%が「話した内容」になるそうです。',
     ];
 
-    
     // HTML要素を取得
-    let TipsChangeButton = document.querySelector('#TipsChangeButton');                 // コミュニケーションのヒントを次に進めるボタン
-    let QuestionChangeButton = document.querySelector('#QuestionChangeButton');             // 質問内容を他のものに変更するボタン
-    let ProfileTransferButton = document.getElementById("ProfileTransferButton");       // プロフィールの送信ボタン
-    let QuestionTransferButton = document.getElementById("QuestionTransferButton");         // 質問の送信ボタン
-
+    const TipsChangeButton = document.querySelector("#TipsChangeButton");                 // コミュニケーションのヒントを次に進めるボタン
+    const QuestionChangeButton = document.querySelector("#QuestionChangeButton");             // 質問内容を他のものに変更するボタン
+    const ProfileTransferButton = document.getElementById("ProfileTransferButton");       // プロフィールの送信ボタン
+    const QuestionTransferButton = document.getElementById("QuestionTransferButton");         // 質問の送信ボタン
+    const adminLink = document.getElementById("adminLink");                               // 管理ページへのリンク
 
     // ランダムな質問をWebページに描画
     function RenderRandomQuestion() {
         const RandomQuestionsNumber = Math.floor(Math.random() * questions.length);
         const RandomQuestion = questions[RandomQuestionsNumber];
-        document.getElementById('randomquestion').textContent = RandomQuestion;
+        document.getElementById("randomquestion").textContent = RandomQuestion;
     }
-
-
 
     // ランダムなtipsをWebページに描画
     function RenderRandomTips() {
@@ -62,28 +58,25 @@
         document.getElementById("randomtips").textContent = RandomTips;
     }
 
-
-
     // プロフィールをLocalStorageへ保存(送信ボタン)
     function ProfileSave() {
         let inputText1 = document.getElementById("InputBox1").value;
         let storageKey = "ProfileData";
-        let savedData = JSON.parse(localStorage.getItem(storageKey)) || [];
+        let savedData = JSON.parse(localStorage.getItem(storageKey)) || [];                     // 配列ProfileDataをJSON形式の文字列をJSONオブジェクトに変換　　　 JSON形式の文字列の例 → "[{\"name\":\"Alice\",\"hobby\":\"Reading\"},{\"name\":\"Bob\",\"hobby\":\"Gaming\"}]"
+        let sameNameExist = savedData.find(entry => entry.name === inputText1);                     // 配列ProfileData →　name: inputText1　に最初に当てはまるオブジェクトを返す
 
-        let sameNameExist = savedData.find(entry => entry.name === inputText1);
-
-        let newEntry = {
+        let newEntry = {                                                                        // Webブラウザ上のテキストボックス内の値をオブジェクトに入れる
             name: document.getElementById("InputBox1").value,
             hobby: document.getElementById("InputBox2").value,
             favoriteThing: document.getElementById("InputBox3").value,
             favoriteVideo: document.getElementById("InputBox4").value
         };
 
-        if(sameNameExist) {
-            DataWithNoNameMatch = savedData.filter(entry => entry.name !== inputText1);         // テキストボックスに入力した名前と一致しないデータを配列として返す
+        if(sameNameExist) {                                                                     // 既にlocalstorageの　ProfileData → name: inputText1 が存在する場合
+            DataWithNoNameMatch = savedData.filter(entry => entry.name !== inputText1);             // テキストボックスに入力した名前と 一致しないデータを配列として返す
             DataWithNoNameMatch.push(newEntry);
             localStorage.setItem(storageKey, JSON.stringify(DataWithNoNameMatch));
-        } else {
+        } else {                                                                                // 存在しない場合はlocalstorageの配列に追加する
             savedData.push(newEntry);
             localStorage.setItem(storageKey, JSON.stringify(savedData));
         }
@@ -100,151 +93,172 @@
 
 
 
-    // 質問内容をLocalStrageへ保存(送信ボタン)
+    // 質問内容をLocalStorageへ保存(送信ボタン)
     function QuestionSave() {
         let inputText1 = document.getElementById("InputBox1").value;
         let inputText5 = document.getElementById("InputBox5").value;
         let currentQuestionText = document.getElementById("randomquestion").textContent;
 
-        let storageKey = "questionData";                                                        // LocalStrageのキーを指定
-        let savedData = JSON.parse(localStorage.getItem(storageKey)) || [];                     // LocalStrageからキーを指定して配列を取得
+        let storageKey = "questionData";                                                        // LocalStorageのキーを指定
+        let savedData = JSON.parse(localStorage.getItem(storageKey)) || [];                     // LocalStorageからキーを指定して配列を取得
 
         let sameNameExist = savedData.find(entry => entry.name === inputText1);                    // 既に同じ名前のデータがあるか確認
 
         if(sameNameExist) {
-            
             let existQuestion = sameNameExist.questions.find(q => q.question === currentQuestionText);       //　既存の質問の検索
             if(existQuestion) {                                                                         // 名前も質問も一致するものが存在する場合
                 existQuestion.answer = inputText5;
             } else {
-                sameNameExist.questions.push({ question:currentQuestionText, answer:inputText5});      // 既にLocalStrageに同じ名前が存在する場合、questionsの中に配列を
+                sameNameExist.questions.push({ question:currentQuestionText, answer:inputText5});      // 既にLocalStorageに同じ名前が存在する場合、questionsの中に配列を
             }
-
         } else {
             let newEntry = {
                 name: inputText1,
-                questions: [
-                    {question: currentQuestionText, answer: inputText5}
-                ]
+                questions: [{question: currentQuestionText, answer: inputText5}]
             };
             savedData.push(newEntry);
         }
 
-        console.log("保存前のデータ:", savedData);                                                      // デバッグ用
-        localStorage.setItem(storageKey,JSON.stringify(savedData));                              // LocalStrageの更新
-        console.log("保存後のデータ:", JSON.parse(localStorage.getItem(storageKey)));                   // デバッグ用
+        localStorage.setItem(storageKey,JSON.stringify(savedData));                                     // LocalStorageの更新
 
         if(document.getElementById("QuestionTransferButton")) {
-            renderAllQuestions();                                                                    // UIに反映
+            renderAllQuestions();                                                                       // UIに反映
         }
 
-        document.getElementById("InputBox1").value = "";
-        document.getElementById("InputBox5").value = "";                                     // テキストボックスを全て空に
+        document.getElementById("InputBox1").value = "";                                                // テキストボックスを全て空に
+        document.getElementById("InputBox5").value = "";
     }
 
 
 
-    // プロフィール部分の描画
+    // プロフィール部分の描画(localstorage内データとHTML要素を生成し、合わせて描画)
     function renderAllProfiles() {
         let sections = document.getElementById("profileSections");
         sections.innerHTML = "";
-        let savedData = JSON.parse(localStorage.getItem("ProfileData")) || [];
+        let savedData = JSON.parse(localStorage.getItem("ProfileData")) || [];                          // JSON形式で書かれた文字列をJavaScriptのJSONオブジェクトに変換する
 
-        savedData.forEach(profiles => {
-            let div = document.createElement("div");
-            div.className = "section";
-            
-            let nameP = document.createElement("p");
-            nameP.textContent = "名前：" + profiles.name;
-
+        savedData.forEach(ProfileData => {                                                                              //  <div class="profileSection">
+            let div = document.createElement("div");                                                                    //      <p>名前：吉行昭洋</p>                                                  localstorage → profileData → {"name": "吉行昭洋", "hobby": "ゲーム", "favoriteThing": "ゲーム", "favoriteVideo": "youtube"}
+            div.className = "profileSection";                                                                           //      <p>趣味、特技：ゲーム</p>
+                                                                                                                        //      <p>一番ハマっているもの：ゲーム</p>
+            let nameP = document.createElement("p");                                                                    //      <p>好きな動画(テレビ、ネット、サブスク、映画等)：youtube</p>
+            nameP.textContent = "名前：" + ProfileData.name;                                                            //       <button class="delete-button" data-name="吉行昭洋">全て削除</button>
+                                                                                                                        //  </div>
             let hobbyP = document.createElement("p");
-            hobbyP.textContent = "趣味、特技：" + profiles.hobby;
-        
-            let favoriteThingP = document.createElement("p");
-            favoriteThingP.textContent = "一番ハマっているもの：" + profiles.favoriteThing;
-            
-            let favoriteVideoP = document.createElement("p");
-            favoriteVideoP.textContent = "好きな動画(テレビ、ネット、サブスク、映画等)：" + profiles.favoriteVideo;
+            hobbyP.textContent = "趣味、特技：" + ProfileData.hobby;
 
-            // `div` に追加
-            div.appendChild(nameP);
+            let favoriteThingP = document.createElement("p");
+            favoriteThingP.textContent = "一番ハマっているもの：" + ProfileData.favoriteThing;
+
+            let favoriteVideoP = document.createElement("p");
+            favoriteVideoP.textContent = "好きな動画(テレビ、ネット、サブスク、映画等)：" + ProfileData.favoriteVideo;
+
+            let profileDeleteButton = document.createElement("button");                                            // ボタン要素生成 → テキストとクラスを付与 → data-name="" localStorageのProfileDataオブジェクト内の キー:name に対応する要素を入れる
+            profileDeleteButton.textContent = "全て削除";
+            profileDeleteButton.className = "delete-button";
+            profileDeleteButton.setAttribute("data-name", ProfileData.name);
+
+            profileDeleteButton.addEventListener("click", () => {                                                  // 削除ボタンのイベントリスナー
+                deleteProfile(ProfileData.name);
+            });
+            
+            div.appendChild(nameP);                             // <div class="profileSection"></div>　に入れる
             div.appendChild(hobbyP);
             div.appendChild(favoriteThingP);
             div.appendChild(favoriteVideoP);
-
-            // `profileSections` に追加
+            if (document.title === "管理ページ") {
+                div.appendChild(profileDeleteButton);
+            };
             sections.appendChild(div);
         });
     }
 
+    // 「管理ページ」リンクをクリックした際のパスワード入力関数
+    function gate() {
+        let UserInput = prompt("パスワードを入力して下さい:","");
+        if (UserInput !== null) {
+            location.href = UserInput + ".html";                                    // パスワードが入力されたら管理ページへ遷移
+        }
+    }
+
+    // 指定した名前のプロフィールデータを削除する関数
+    function deleteProfile(ProfileData_name) {
+        let storageKey = "ProfileData";
+        let profileSavedData = JSON.parse(localStorage.getItem(storageKey)) || [];
+        let updateProfileData = profileSavedData.filter(profileData => profileData.name !== ProfileData_name);
+        localStorage.setItem(storageKey, JSON.stringify(updateProfileData));
+        renderAllProfiles()
+    }
 
 
-    // 質問部分の描画 (HTML要素を生成)
+    // 質問部分の描画 (localstorage内データとHTML要素を生成し、合わせて描画)
     function renderAllQuestions() {
         let sections = document.getElementById("questionSections");
-        sections.innerHTML = "";                                    // 既存の表示をクリア
-
+        sections.innerHTML = "";
         let savedData = JSON.parse(localStorage.getItem("questionData")) || [];
 
-
-        savedData.forEach(entry => {                                     // HTMLタグを作成して描画
-            let div = document.createElement("div");                    // <div class="section"> を作成
-            div.className = "section";
-            let p = document.createElement("p");                        // Javascript上で<p>タグを作成
-            let span = document.createElement("span");
-            span.textContent = "名前：" + entry.name;
-            div.appendChild(p);                                     // <div> の中に <p> をいれる
-            p.appendChild(span);                                        // <p> の中に <span> を追加
-        
-            entry.questions.forEach(q => {                              // 
-                let questionP = document.createElement("p");
-                let questionSpan = document.createElement("span");
-                questionSpan.textContent = q.question + ":";
-                questionP.appendChild(questionSpan);
-    
+        savedData.forEach(questionData => {                                     //  <div class="questionSection">
+            let div = document.createElement("div");                            //      <p>名前：</p>
+            div.className = "questionSection";                                  //      <p>吉行昭洋</p>                          localstorage → questionData → {name: "吉行昭洋"}
+            let p = document.createElement("p");                                //  </div>
+            p.textContent = "名前："
+            let nameP = document.createElement("p");
+            nameP.textContent = questionData.name;
+            div.appendChild(p);
+            div.appendChild(nameP);
+            
+            questionData.questions.forEach(q => {                               //  <p>
+                let questionP = document.createElement("p");                    //      <span>やってみたい事は？</span>           localstorage → questions → {question: "", answer: ""}
+                let questionSpan = document.createElement("span");              //  </p>
+                questionSpan.textContent = q.question + ":";                    //  <p>
+                questionP.appendChild(questionSpan);                            //      <span>空を飛ぶ</span>
+                                                                                //  </p>
                 let answerP = document.createElement("p");
                 let answerSpan = document.createElement("span");
                 answerSpan.textContent = q.answer;
                 answerP.appendChild(answerSpan);
-    
-                div.appendChild(questionP);
+                div.appendChild(questionP);                                     //  <div class="questionSection"></div>　に<p>要素を入れる
                 div.appendChild(answerP);
             });
+
+            let questionDeleteButton = document.createElement("button");                        // ボタン要素を生成 → テキストとクラス付与 → data-name = "" localstorageのquestionDataオブジェクトのキー：nameを付与
+            questionDeleteButton.textContent = "全て削除";
+            questionDeleteButton.className = "delete-button";
+            questionDeleteButton.setAttribute("data-name", questionData.name);
+            questionDeleteButton.addEventListener("click", () => {                // 削除ボタンのイベントリスナー
+                deleteQuestion(questionData.name);                                  // localstorage → questionData → name: "ここが引数"
+            });
+
+            if (document.title === "管理ページ") {                                 // 管理ページなら削除ボタンをつける
+                div.appendChild(questionDeleteButton);
+            };
 
             sections.appendChild(div);                                  // id="sections"に<div>を追加
         });
     }
 
+    // 1人分の質問データ削除
+    function deleteQuestion(questionData_name) {
+        let storageKey = "questionData";
+        let questionSavedData = JSON.parse(localStorage.getItem(storageKey)) || [];
+        let updateQuestionData = questionSavedData.filter(questionData => questionData.name !== questionData_name);
+        localStorage.setItem(storageKey, JSON.stringify(updateQuestionData));
+        renderAllQuestions()
+    }
 
-
-    // tipsチェンジボタン
-    if(document.getElementById("TipsChangeButton")) {
-        TipsChangeButton.addEventListener("click", RenderRandomTips);
+    // プロフィール共有ページの処理
+    if(document.title === "メインページ") {
+        TipsChangeButton.addEventListener("click", RenderRandomTips);           // tipsチェンジボタン
+        ProfileTransferButton.addEventListener('click', ProfileSave);                     // プロフィールをLocalStorageへ保存 (送信ボタン)
+        RenderRandomTips();                                             // ランダムなコミュニケーションのヒント
     };
 
-    // Questionチェンジボタン
-    if(document.getElementById("QuestionChangeButton")) {
-        QuestionChangeButton.addEventListener('click', RenderRandomQuestion);
-    };
-    
-    // プロフィールをLocalStorageへ保存 (送信ボタン)
-    if(document.getElementById("ProfileTransferButton")) {
-        ProfileTransferButton.addEventListener('click', ProfileSave);
+    // 質問共有ページの処理
+    if(document.title === "質問共有ページ") {
+        QuestionTransferButton.addEventListener('click', QuestionSave);                     // 質問をLocalStorageへ保存 (送信ボタン)
+        QuestionChangeButton.addEventListener('click', RenderRandomQuestion);                   // Questionチェンジボタン
+        RenderRandomQuestion();                                                 // ランダム質問の描画
     };
 
-    // 質問をLocalStorageへ保存 (送信ボタン)
-    if(document.getElementById("QuestionTransferButton")) {
-        QuestionTransferButton.addEventListener('click', QuestionSave);
-    };
-
-    // ランダム質問の描画
-    if(document.getElementById("randomquestion")) {
-        RenderRandomQuestion();
-    };
-    
-    // ランダムなコミュニケーションのヒント
-    if(document.getElementById("randomtips")) {
-    RenderRandomTips();
-    };
-
+    adminLink.addEventListener("click", gate);                                 // 管理ページへのリンク
 }

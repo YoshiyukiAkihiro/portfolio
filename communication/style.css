@@ -222,7 +222,7 @@ body {
     margin-top: 2rem;
   }
 
-  /* モーダルアニメーション */
+  /* 透明度を0から1にフェードイン */
   @keyframes mmfadeIn {
     from {
       opacity: 0;
@@ -241,6 +241,7 @@ body {
     }
   }
   
+  /* 要素をY軸方向に15%下から0まで移動 */
   @keyframes mmslideIn {
     from {
       transform: translateY(15%);
@@ -250,6 +251,7 @@ body {
     }
   }
   
+  /* 要素をY軸方向に0から10%上まで移動 */
   @keyframes mmslideOut {
     from {
       transform: translateY(0);
@@ -267,6 +269,7 @@ body {
     display: block;
   }
   
+  /* アニメーションを0.3秒で実行し、タイミング関数で速度を制御。モーダルウィンドウが開いている場合はfalse 閉じている場合はtrue */
   .micromodal-slide[aria-hidden="false"] .modal-overlay {
     animation: mmfadeIn .3s cubic-bezier(.0, .0, .2, 1);
   }
