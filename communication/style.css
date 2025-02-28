@@ -45,6 +45,7 @@ body {
 }
 
 .portfolio-item {
+  width: 300px;
   margin: 0 10px;
   margin-bottom: 20px;
 }
@@ -93,9 +94,15 @@ body {
     color: #007bff;
 }
 
-.menu a {
+.menu a,
+.right-menu a {
   padding: 0 10px;
   color: #007bff;
+}
+
+.right-menu {
+    margin-left: auto;
+    margin-right: 10px;
 }
 
 /* 見出し 「プロフィール共有」　「質問集」 */
