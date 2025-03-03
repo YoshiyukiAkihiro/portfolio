@@ -5,48 +5,113 @@
     <title>トップページ</title>
     <link rel="stylesheet" href="./style.css">
     <script defer src="./communication.js"></script>
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 </head>
-<body>
+    <!-- ヘッダー -->
+    <header class="header-menu">
+        <div class="menu">
+            <a href="./toppage.html" class="self-introduction">Top</a>
+            <a href="./profileSharing.html">プロフィール</a>
+            <a href="./questionSharing.html">質問</a>
+            <a href="#" class="admin" id="adminLink">管理ページ</a>
+        </div>
+        <div class="right-menu">
+            <a href="./portfolio.html" class="portfolio-top">一覧に戻る</a>
+        </div>
+    </header>
+    <!-- ./ヘッダー -->
 
-    <!-- .portfolio -->
-    <section class="portfolio-section">
-        <div class="container">
-            <div class="portfolio-header">
-                <h1>PortFolio</h1>
-            </div>
-            <div class="portfolio-discription">
-                <p>制作物の一覧です</p>
-            </div>
-            <div class="section-body">
-                <div class="portfolio-list">
-                    <div class="portfolio-item">
-                        <div>
-                            <a href="../index.html" class="portfolio-image-wrapper">
-                                <img class="portfolio-image" src="../images/selfintroduction-preview.png">
-                            </a>
-                        </div>
-                        <div class="portfolio-body">
-                            <div class="portfolio-title">自己紹介サイト</div>
-                            <div class="portfolio-text">就労移行支援事業所で作成したWebページです。</div>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-item">
-                        <div>
-                            <a href="./profileSharing.html" class="portfolio-image-wrapper">
-                                <img class="portfolio-image" src="../images/profileSharing-preview.png">
-                            </a>
-                        </div>
-                        <div class="portfolio-body">
-                            <div class="portfolio-title">やんわり繋がるページ</div>
-                            <div class="portfolio-text">コミュニケーションの苦手な人が、プロフィールや質問の答えを共有して繋がるページです。</div>
+    <!-- Micromodal.js -->
+    <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+        <!-- 背景のオーバーレイ -->
+        <div class="modal-overlay" tabindex="-1">
+            <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <header class="modal-header">
+                    <h2 class="modal-title" id="modal-1-title">プロフィール登録</h2>
+                    <!-- 閉じるボタン -->
+                    <button class="modal-close" aria-label="Close modal" data-micromodal-close></button>
+                </header>
+                <!-- モーダルのコンテンツ -->
+                <div class="modal-content" id="modal-1-content">
+                    <!-- 入力フォーム -->
+                    <div class="inputform-wrapper">
+                        <div class="container">
+                            <!-- 入力フォームの枠 -->
+                            <div class="inputform-border">
+                                <!-- 入力フォームの内側の周囲 -->
+                                <div class="input-inner">
+                                    <!-- 名前 -->
+                                    <div class="input-box">
+                                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
+                                        <span class="inputform-text2">名前：</span>
+                                        <div class="empty"></div>
+                                        <input class="input" id="InputBox1">
+                                    </div>
+                                    <!-- 趣味、特技 -->
+                                    <div class="input-box">
+                                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
+                                        <span class="inputform-text2">趣味、特技：</span>
+                                        <div class="empty"></div>
+                                        <input class="input" id="InputBox2">
+                                    </div>
+                                    <!-- 一番ハマっているもの -->
+                                    <div class="input-box">
+                                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
+                                        <span class="inputform-text2">一番ハマっているもの：</span>
+                                        <div class="empty"></div>
+                                        <input class="input" id="InputBox3">
+                                    </div>
+                                    <!-- 好きな動画媒体(テレビ、ネット、サブスク等) -->
+                                    <div class="input-box">
+                                        <!-- <div class="input-title"><span class="inputform-text1">必須</span></div> -->
+                                        <span class="inputform-text2">好きな動画(テレビ、ネット、サブスク、映画等)：</span>
+                                        <div class="empty"></div>
+                                        <input class="input" id="InputBox4">
+                                    </div>
+                                    <!-- 送信ボタン -->
+                                    <div class="input-box">
+                                        <button class="send" id="ProfileTransferButton" data-micromodal-close>送信</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- ./portFolio -->
+    </div>
+    <!-- ./Micromodal.js -->
 
-</body>
+    <div class="contents-section">
+        <div class="container">
+            <div class="contents-header">
+                <h1>コンテンツ一覧</h1>
+            </div>
+            <div class="contents-list">
+                <div class="contents-item">
+                    <div>
+                        <a href="./profileSharing.html" class="contents-image-wrapper">
+                            <img class="contents-image" src="../images/profile-preview.png">
+                        </a>
+                    </div>
+                    <div class="contents-body">
+                        <div class="contents-title">プロフィール</div>
+                        <div class="contents-text">プロフィールの共有ページです。</div>
+                    </div>
+                </div>
+                
+                <div class="contents-item">
+                    <div>
+                        <a href="./questionSharing.html" class="contents-image-wrapper">
+                            <img class="contents-image" src="../images/question-preview.png">
+                        </a>
+                    </div>
+                    <div class="contents-body">
+                        <div class="contents-title">質問</div>
+                        <div class="contents-text">質問の回答ページです。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </html>
