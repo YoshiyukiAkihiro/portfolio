@@ -48,6 +48,11 @@ body {
   width: 300px;
   margin: 0 10px;
   margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .portfolio-image {
@@ -91,6 +96,12 @@ body {
 .contents-item {
   max-width: 480px;
   margin: 0 10px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .contents-image-wrapper {
@@ -104,23 +115,18 @@ body {
   margin: 0 auto;
 }
 
-.contents-item {
-  margin: 0 10px;
-  margin-bottom: 20px;
-}
-
 .contents-title {
   width: 90%;
   margin: 0 auto;
   text-align: center;
-  background-color: #ffffff;
 }
 
 .contents-text {
   width: 90%;
   margin: 0 auto;
   text-align: center;
-  background-color: #ffffff;
+  font-size: 12px;
+  font-weight: normal;
 }
 
 /* ------------------------------------------------------------------------------ */
