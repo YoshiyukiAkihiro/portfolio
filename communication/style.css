@@ -157,8 +157,16 @@ body {
 
 .menu a,
 .right-menu a {
-  padding: 0 10px;
+  padding: 5px 10px;
+  margin: 2px;
   color: #007bff;
+}
+
+.menu a:hover,
+.right-menu a:hover {
+  background-color: #f1eaea6d;
+  /* color: #ffffff; */
+  border-radius: 5px;
 }
 
 .right-menu {
