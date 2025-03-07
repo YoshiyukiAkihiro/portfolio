@@ -1,35 +1,38 @@
 * {
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
-    box-sizing: border-box;
-    letter-spacing: 0.05em;
-    font-weight: bold;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  letter-spacing: 0.05em;
+  font-weight: bold;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
 .container {
-    max-width: 1024px;
-    width: 90%;
-    margin: 0 auto;
+  max-width: 1024px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 /* ---------------------------------------------------- */
 /* ------------------portfolio.html-------------------- */
+.portfolio-page {
+  background-color: #e0f7fa;
+}
 
 .portfolio-section {
-  background-color: #f7f7f7a3;
   padding: 120px 0;
 }
 
 .portfolio-header h1 {
   text-align: center;
   margin-bottom: 15px;
+  color: #00796b;
 }
 
 .portfolio-discription p {
@@ -78,13 +81,14 @@ body {
 
 .contents-section {
   background-color: #f7f7f7a3;
-  padding: 120px 0;
+  padding-top: 120px;
 }
 
 .contents-header h1 {
   text-align: center;
   margin-bottom: 15px;
   border-bottom: 1px solid #ddd;
+  color: #333;
 }
 
 .contents-list {
@@ -138,21 +142,21 @@ body {
 
 /* ヘッダー */
 .header-menu {
-    height: 80px;
-    width: 100%;
-    background-color: #ffffff;
-    color: #333;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 80px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #333;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .self-introduction {
-    margin-left: 10px;
-    color: #007bff;
+  margin-left: 10px;
+  color: #007bff;
 }
 
 .menu a,
@@ -165,13 +169,17 @@ body {
 .menu a:hover,
 .right-menu a:hover {
   background-color: #f1eaea6d;
-  /* color: #ffffff; */
   border-radius: 5px;
 }
 
+.menu a.active {
+  text-decoration: underline;
+  text-decoration-color: #007bff;
+}
+
 .right-menu {
-    margin-left: auto;
-    margin-right: 10px;
+  margin-left: auto;
+  margin-right: 10px;
 }
 
 /* 見出し 「プロフィール共有」　「質問集」 */
@@ -253,189 +261,189 @@ body {
 /* ---------------------------------------------------- */
 /* ------------------モーダルウィンドウ------------------ */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    z-index: 1001;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  z-index: 1001;
+}
 
-  .modal-header {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-  }
+.modal-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
 
-  .modal-title {
-    margin: 10px 0 0 10px;
-  }
-  
-  .modal-container {
-    background-color: white;
-    max-height: 90vh;
-    max-width: 600px;
-    width: 90%;
-    overflow-y: auto;
-    z-index: 1002;
-    border-radius: 5px;
-  }
-  
-  .modal-close {
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-    color: black;
-    margin-right: 20px;
-  }
-  
-  .modal-header .modal-close::before {
-    content: "\2715";
-  }
-  
-  .modal-content {
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-  }
+.modal-title {
+  margin: 10px 0 0 10px;
+}
 
-  /* 透明度を0から1にフェードイン */
-  @keyframes mmfadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+.modal-container {
+  background-color: white;
+  max-height: 90vh;
+  max-width: 600px;
+  width: 90%;
+  overflow-y: auto;
+  z-index: 1002;
+  border-radius: 5px;
+}
+
+.modal-close {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: black;
+  margin-right: 20px;
+}
+
+.modal-header .modal-close::before {
+  content: "\2715";
+}
+
+.modal-content {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+/* 透明度を0から1にフェードイン */
+@keyframes mmfadeIn {
+  from {
+    opacity: 0;
   }
-  
-  @keyframes mmfadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
+  to {
+    opacity: 1;
   }
-  
-  /* 要素をY軸方向に15%下から0まで移動 */
-  @keyframes mmslideIn {
-    from {
-      transform: translateY(15%);
-    }
-    to {
-      transform: translateY(0);
-    }
+}
+
+@keyframes mmfadeOut {
+  from {
+    opacity: 1;
   }
-  
-  /* 要素をY軸方向に0から10%上まで移動 */
-  @keyframes mmslideOut {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-10%);
-    }
+  to {
+    opacity: 0;
   }
-  
-  .micromodal-slide {
-    display: none;
+}
+
+/* 要素をY軸方向に15%下から0まで移動 */
+@keyframes mmslideIn {
+  from {
+    transform: translateY(15%);
   }
-  
-  .micromodal-slide.is-open {
-    display: block;
+  to {
+    transform: translateY(0);
   }
-  
-  /* アニメーションを0.3秒で実行し、タイミング関数で速度を制御。モーダルウィンドウが開いている場合はfalse 閉じている場合はtrue */
-  .micromodal-slide[aria-hidden="false"] .modal-overlay {
-    animation: mmfadeIn .3s cubic-bezier(.0, .0, .2, 1);
+}
+
+/* 要素をY軸方向に0から10%上まで移動 */
+@keyframes mmslideOut {
+  from {
+    transform: translateY(0);
   }
-  
-  .micromodal-slide[aria-hidden="false"] .modal-container {
-    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+  to {
+    transform: translateY(-10%);
   }
-  
-  .micromodal-slide[aria-hidden="true"] .modal-overlay {
-    animation: mmfadeOut .3s cubic-bezier(.0, .0, .2, 1);
-  }
-  
-  .micromodal-slide[aria-hidden="true"] .modal-container {
-    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
-  }
-  
-  .micromodal-slide .modal-container,
-  .micromodal-slide .modal-overlay {
-    will-change: transform;
-  }
+}
+
+.micromodal-slide {
+  display: none;
+}
+
+.micromodal-slide.is-open {
+  display: block;
+}
+
+/* アニメーションを0.3秒で実行し、タイミング関数で速度を制御。モーダルウィンドウが開いている場合はfalse 閉じている場合はtrue */
+.micromodal-slide[aria-hidden="false"] .modal-overlay {
+  animation: mmfadeIn .3s cubic-bezier(.0, .0, .2, 1);
+}
+
+.micromodal-slide[aria-hidden="false"] .modal-container {
+  animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .modal-overlay {
+  animation: mmfadeOut .3s cubic-bezier(.0, .0, .2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .modal-container {
+  animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal-slide .modal-container,
+.micromodal-slide .modal-overlay {
+  will-change: transform;
+}
 
 
 /* ----------------------------------------------- */
 /* ------------------入力フォーム------------------ */
 .inputform-wrapper {
-    margin: 140px 0;
+  margin: 140px 0;
 }
 
 /* 入力フォームの枠 */
 .inputform-border {
-    display: flex;
-    margin: 0 auto;
+  display: flex;
+  margin: 0 auto;
 }
 
 /* 入力ボックスの内側の周囲 */
 .input-inner {
-    width: 90%;
-    height: 90%;
-    margin: auto;
+  width: 90%;
+  height: 90%;
+  margin: auto;
 }
 
 /* 入力フォーム1行分 */
 .input-box {
-    max-height: 52px;
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+  max-height: 52px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 /* 入力フォームの各文字列(名前、趣味、特技) */
 .inputform-text2 {
-    display: inline-block;
-    font-size: clamp(1px, 3vw, 16px);
-    margin-left: 10px;
+  display: inline-block;
+  font-size: clamp(1px, 3vw, 16px);
+  margin-left: 10px;
 }
 
 /* 改行用の空要素 */
 .empty {
-    width: 100%;
+  width: 100%;
 }
 
 /* 入力ボックス */
 .input {
-    display: block;
-    height: 24px;
-    width: 240px;
-    color: black;
-    margin-left: auto;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    padding: 5px;
+  display: block;
+  height: 24px;
+  width: 240px;
+  color: black;
+  margin-left: auto;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 5px;
 }
 
 /* 送信ボタン */
 .send {
-    color: white;
-    background-color: #007bff;
-    margin: 25px auto 0 auto;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+  color: white;
+  background-color: #007bff;
+  margin: 25px auto 0 auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .send:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 /* ------------------------------------------------------------- */
@@ -443,26 +451,26 @@ body {
 
 /* プロフィールセクションの全てまとめた周囲 */
 .sections-wrapper {
-    text-align: center;
-    margin-top: 100px;
-    margin-bottom: 40px;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 40px;
 }
 
 /* セクションすべての周囲 */
 .sections {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 /* セクション１つ */
 .profileSection,
 .questionSection {
-    border: 1px solid #ddd;
-    width: 50%;
-    background-color: #ffffff;
-    margin-bottom: 20px;
-    border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 50%;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  border-radius: 5px;
 }
 
 .profileSection p:nth-child(odd),
@@ -474,61 +482,54 @@ body {
 /* セクション内部の行 */
 .profileSection p,
 .questionSection p {
-    text-align: left;
-    padding: 5px 0 5px 10px;
+  text-align: left;
+  padding: 5px 0 5px 10px;
 }
 
 /* セクション内入力用テキストボックス */
 .answer {
-    max-width:100%;
-    color: black;
+  max-width:100%;
+  color: black;
 }
 
 /* ------------------------------------------- */
 /* ------------------フッター------------------ */
 footer {
-    width: 100%;
-    height: 40px;
-    background-color: #007bff;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
+  width: 100%;
+  height: 40px;
+  background-color: #007bff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 /* フッター文字列の範囲 */
 .footer-copyright {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* フッター文字列 */
 .footer-copyright-text {
-    font-weight: normal;
-    color: #FFFFFF;
-    font-size: 12px;
+  font-weight: normal;
+  color: #FFFFFF;
+  font-size: 12px;
 }
-
-/* ------------------------------------------------------------------------------ */
-/* -----------------------question.html用のcss記述欄 ----------------------------- */
-/* ------------------------------------------------------------------------------ */
-
-
-
 
 /* ---------------------------------------------------- */
 /* ------------------スマホ用レイアウト------------------ */
 @media all and (max-width: 768px) {
-    .sections {
-        flex-direction: column;
-        align-items:center;
-    }
+  .sections {
+    flex-direction: column;
+    align-items:center;
+  }
 
-    .profileSection,
-    .questionSection {
-        width: 80%;
-    }
+  .profileSection,
+  .questionSection {
+    width: 80%;
+  }
 }

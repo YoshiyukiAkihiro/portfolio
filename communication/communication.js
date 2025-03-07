@@ -147,7 +147,7 @@
             const div = document.createElement("div");                                                                    //      <p>名前：吉行昭洋</p>                                                  localstorage → profileData → {"name": "吉行昭洋", "hobby": "ゲーム", "favoriteThing": "ゲーム", "favoriteVideo": "youtube"}
             div.className = "profileSection";                                                                           //      <p>趣味、特技：ゲーム</p>
                                                                                                                         //      <p>一番ハマっているもの：ゲーム</p>
-            const nameP = document.createElement("p");                                                                    //      <p>好きな動画(テレビ、ネット、サブスク、映画等)：youtube</p>
+            const nameP = document.createElement("p");                                                                    //      <p>好きなテレビ、映画、本、配信サービス等：youtube</p>
             nameP.textContent = "名前：" + ProfileData.name;                                                            //       <button class="delete-button" data-name="吉行昭洋">全て削除</button>
                                                                                                                         //  </div>
             const hobbyP = document.createElement("p");
@@ -157,7 +157,7 @@
             favoriteThingP.textContent = "一番ハマっているもの：" + ProfileData.favoriteThing;
 
             const favoriteVideoP = document.createElement("p");
-            favoriteVideoP.textContent = "好きな動画(テレビ、ネット、サブスク、映画等)：" + ProfileData.favoriteVideo;
+            favoriteVideoP.textContent = "好きなテレビ、映画、本、配信サービス等：" + ProfileData.favoriteVideo;
 
             const profileDeleteButton = document.createElement("button");                                            // ボタン要素生成 → テキストとクラスを付与 → data-name="" localStorageのProfileDataオブジェクト内の キー:name に対応する要素を入れる
             profileDeleteButton.textContent = "全て削除";
@@ -250,6 +250,15 @@
         const updateQuestionData = questionSavedData.filter(questionData => questionData.name !== questionData_name);
         localStorage.setItem(storageKey, JSON.stringify(updateQuestionData));
         renderAllQuestions()
+    }
+
+    // トップページの処理
+    if(document.title === "トップページ") {
+        TipsChangeButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            RenderRandomTips();
+        });
+        RenderRandomTips();
     }
 
     // プロフィール共有ページの処理
